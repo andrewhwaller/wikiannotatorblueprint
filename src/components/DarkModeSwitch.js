@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch } from "@blueprintjs/core";
+import { Switch, Icon } from "@blueprintjs/core";
 
 class DarkModeSwitch extends Switch {
 
@@ -19,12 +19,13 @@ class DarkModeSwitch extends Switch {
     }
 
     render() {
-        console.log(this.props)
-        return <Switch
-            checked={ this.state.checked }
-            label="Dark Mode"
-            onChange={ this.handleSwitch }
-        />
+        return <div className="switchContainer">
+            <Icon icon="moon" className="switchIcon" />
+            <Switch
+                checked={ this.state.checked }
+                onChange={ this.handleSwitch }
+                />
+        </div>
     }
 }
 

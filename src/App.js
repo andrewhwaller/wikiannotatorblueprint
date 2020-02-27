@@ -14,7 +14,6 @@ class App extends Component {
     }
 
     changeMode = value => {
-        console.log(value)
         this.setState({ darkMode: value });
     }
 
