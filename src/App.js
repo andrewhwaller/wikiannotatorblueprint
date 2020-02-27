@@ -1,14 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import './index.css';
 import Header from './components/Header.js'
 
-function App() {
-  return (
-      <div className="App">
-          <Header />
-    </div>
-  );
+class App extends Component {
+
+    constructor () {
+        super()
+        this.state = {
+            darkMode: false
+        }
+        this.changeMode = this.changeMode.bind(this)
+    }
+
+    changeMode = value => {
+        console.log(value)
+        this.setState({ darkMode: value });
+    }
+
+    render() {
+
+        const darkMode = this.state.darkMode
+        console.log(darkMode)
+        return (
+            <div
+                className={`${darkMode ? 'bp3-dark' : 'bp3-light'}`}
+            >
+                <Header changeMode={this.changeMode} />
+            </div>
+        );
+    }
 }
 
 export default App;
