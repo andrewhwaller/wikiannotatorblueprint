@@ -21,7 +21,7 @@ class App extends Component {
     render() {
 
         const darkMode = this.state.darkMode
-        console.log(darkMode)
+
         return (
             <div
                 className={`${darkMode ? 'bp3-dark' : 'bp3-light'}`}
