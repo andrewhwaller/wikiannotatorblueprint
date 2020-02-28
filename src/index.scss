@@ -50,7 +50,7 @@ code {
 .searchContainer {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 50%;
     margin-top: calc(25 * #{$pt-grid-size});
     margin-left: auto;
     margin-right: auto;
@@ -69,9 +69,22 @@ code {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    padding: $pt-grid-size;
     height: auto;
-    width: 80%;
+    width: 100%;
     border-radius: 3px;
 }
 
+.result-list-item > a {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.result-snippet {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

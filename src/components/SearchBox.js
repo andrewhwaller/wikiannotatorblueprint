@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { Elevation } from "@blueprintjs/core";
 
 class SearchBox extends Component {
 
@@ -66,13 +65,29 @@ class SearchBox extends Component {
 
         if (Object.keys(results).length && results.length) {
             return (
-                <div className="results-container bp3-interactive bp3-elevation-2">
-                    { results.map((result) => {
-                        return (
-                            <a key={ result.pageid } className="result-items bp3-text-large" href={ "http://en.wikipedia.org/?curid=" + result.pageid }>{ result.title }</a>
-                        )
-                    })}
-                </div>
+                // <div className="bp3-portal">
+                //     <div className="bp3-overlay bp3-overlay-open">
+                //         <div className="bp3-transition-container bp3-popover-enter-done">
+                            <div className="results-container bp3-popover bp3-minimal">
+                                <div className="bp3-popover-content">
+                                    <ul className="bp3-menu">
+                                        { results.map((result) => {
+                                            console.log(result.snippet)
+                                            return (
+                                                <li key={ result.pageid } className="result-list-item">
+                                                    <a className="bp3-menu-item bp3-popover-dismiss result-link" href={ "http://en.wikipedia.org/?curid=" + result.pageid }>
+                                                        <span className="bp3-text-large">{ result.title }</span>
+                                                        <span className="bp3-text-small bp3-text-muted result-snippet bp3-text-overflow-ellipsis" dangerouslySetInnerHTML={{__html: result.snippet }}></span>
+                                                    </a>
+                                                </li>
+                                            )
+                                        })}    
+                                    </ul>
+                                </div>
+                            </div>
+                //         </div>
+                //     </div>
+                // </div>
             )
         }
     }
@@ -85,7 +100,6 @@ class SearchBox extends Component {
                 <div className="bp3-input-group bp3-large searchInputContainer">
                     <span className="bp3-icon bp3-icon-search"></span>
                     <input type="text" className="bp3-input" placeholder="Search..." value={ query } onChange={ this.handleInputChange }/>
-                    <button className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-arrow-right"></button>
                 </div>
                 { this.renderSearchResults() }
             </div>
