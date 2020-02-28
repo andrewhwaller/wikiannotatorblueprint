@@ -3,6 +3,7 @@ import './App.css';
 import './index.scss';
 import Header from './components/Header.js'
 import SearchBox from './components/SearchBox';
+// import { Classes } from "@blueprintjs/core"
 
 class App extends Component {
 
@@ -19,10 +20,11 @@ class App extends Component {
     }
 
     render() {
-        // const darkMode = this.state.darkMode
-        document.getElementById("root").className = ((this.state.darkMode) ? "bp3-dark" : "");
+
+        document.body.className = ((this.state.darkMode) ? "bp3-dark" : "");
+        
         return (
-            <div>
+            <div className={((this.state.darkMode) ? "light-bg" : "dark-bg")}>
                 <Header changeMode={ this.changeMode } />
                 <div id="content">
                     <SearchBox />

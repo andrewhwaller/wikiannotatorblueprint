@@ -9,7 +9,7 @@ FocusStyleManager.onlyShowFocusOnTabs();
 
 class Header extends Component {
     render() {
-        console.log(this)
+
         return (
             <Navbar>
                 <Navbar.Group align={Alignment.LEFT}>
