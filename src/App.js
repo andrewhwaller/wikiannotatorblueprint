@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import './index.css';
+import './index.scss';
 import Header from './components/Header.js'
+import SearchBox from './components/SearchBox';
 
 class App extends Component {
 
@@ -18,14 +19,14 @@ class App extends Component {
     }
 
     render() {
-
-        const darkMode = this.state.darkMode
-
+        // const darkMode = this.state.darkMode
+        document.getElementById("root").className = ((this.state.darkMode) ? "bp3-dark" : "");
         return (
-            <div
-                className={`${darkMode ? 'bp3-dark' : 'bp3-light'}`}
-            >
-                <Header changeMode={this.changeMode} />
+            <div>
+                <Header changeMode={ this.changeMode } />
+                <div id="content">
+                    <SearchBox />
+                </div>
             </div>
         );
     }
