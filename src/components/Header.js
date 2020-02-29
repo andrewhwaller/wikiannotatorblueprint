@@ -13,7 +13,11 @@ class Header extends Component {
         return (
             <Navbar>
                 <Navbar.Group align={Alignment.LEFT}>
-                    <Navbar.Heading><Icon icon={IconNames.RESOLVE} iconSize={Icon.SIZE_LARGE} intent={Intent.PRIMARY} />WikiAnnotator</Navbar.Heading>
+                    <Navbar.Heading>
+                        <span className="brand">
+                            <span className="brandText">Wiki</span><span>Annotator</span>
+                        </span>
+                    </Navbar.Heading>
                     <Navbar.Divider />
                     <Button className="bp3-minimal" icon="home" text="Home" />
                 </Navbar.Group>

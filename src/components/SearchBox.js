@@ -19,10 +19,8 @@ class SearchBox extends Component {
         const query = event.target.value;
 
         if (!query) {
-            console.log("no query")
             this.setState({ query, results: {}, message: '' } );
         } else {
-            console.log("query, man", query)
             this.setState({ query, loading: true, message: '' }, () => {
                 this.fetchSearchResults(query);
             });
@@ -30,7 +28,7 @@ class SearchBox extends Component {
     };
 
     fetchSearchResults = query => {
-        const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json`
+        const endpoint = `https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${query}`
         
         if (this.cancel) {
             this.cancel.cancel()
@@ -61,34 +59,29 @@ class SearchBox extends Component {
     };
 
     renderSearchResults = () => {
-        const { results } = this.state;
+        if (this.state.query) {
+            const { results } = this.state;
 
-        if (Object.keys(results).length && results.length) {
-            return (
-                // <div className="bp3-portal">
-                //     <div className="bp3-overlay bp3-overlay-open">
-                //         <div className="bp3-transition-container bp3-popover-enter-done">
-                            <div className="results-container bp3-popover bp3-minimal">
-                                <div className="bp3-popover-content">
-                                    <ul className="bp3-menu">
-                                        { results.map((result) => {
-                                            console.log(result.snippet)
-                                            return (
-                                                <li key={ result.pageid } className="result-list-item">
-                                                    <a className="bp3-menu-item bp3-popover-dismiss result-link" href={ "http://en.wikipedia.org/?curid=" + result.pageid }>
-                                                        <span className="bp3-text-large">{ result.title }</span>
-                                                        <span className="bp3-text-small bp3-text-muted result-snippet bp3-text-overflow-ellipsis" dangerouslySetInnerHTML={{__html: result.snippet }}></span>
-                                                    </a>
-                                                </li>
-                                            )
-                                        })}    
-                                    </ul>
-                                </div>
-                            </div>
-                //         </div>
-                //     </div>
-                // </div>
-            )
+            if (Object.keys(results).length && results.length) {
+                console.log(results.length)
+                return (
+                    <div className="results-container fade">
+                        <ul className="bp3-menu results-list">
+                            { results.map((result) => {
+                                return (
+                                    <li key={ result.pageid } className="results-list-item">
+                                        <a className="bp3-menu-item bp3-popover-dismiss result-link" href={ "http://en.wikipedia.org/?curid=" + result.pageid }>
+                                            <span className="bp3-text-large">{ result.title }</span>
+                                            <span className="bp3-text-small bp3-text-muted result-snippet bp3-text-overflow-ellipsis" dangerouslySetInnerHTML={ { __html: result.snippet } }>
+                                            </span>
+                                        </a>
+                                    </li>
+                                )
+                            })}    
+                        </ul>
+                    </div>
+                )
+            }
         }
     }
 
