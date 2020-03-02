@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Elevation } from "@blueprintjs/core";
 import axios from 'axios';
 
 class SearchBox extends Component {
@@ -65,7 +66,7 @@ class SearchBox extends Component {
             if (Object.keys(results).length && results.length) {
                 console.log(results.length)
                 return (
-                    <div className="results-container fade">
+                    <div className="results-container fade" elevation={Elevation.TWO}>
                         <ul className="bp3-menu results-list">
                             { results.map((result) => {
                                 return (

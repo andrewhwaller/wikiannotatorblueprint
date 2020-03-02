@@ -34,7 +34,7 @@ class App extends Component {
                     <Route component={ Search } exact path="/search" />
                         {/* <Search /> */}
                     {/* </Route> */}
-                    <Route component={ Home } path="/" />
+                    <Route component={ Home } exact path="/" />
                         {/* <Home /> */}
                     {/* </Route> */}
                 </div>

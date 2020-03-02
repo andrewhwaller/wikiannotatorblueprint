@@ -19,7 +19,7 @@ class Header extends Component {
                         </span>
                     </Navbar.Heading>
                     <Navbar.Divider />
-                    <NavLink to="/home" className="bp3-button bp3-minimal bp3-icon-home header-button" activeClassName="bp3-active">
+                    <NavLink to="/" className="bp3-button bp3-minimal bp3-icon-home header-button" activeClassName="bp3-active" exact>
                         Home
                     </NavLink>
                     <NavLink to="/search" className="bp3-button bp3-minimal bp3-icon-search header-button" activeClassName="bp3-active">
