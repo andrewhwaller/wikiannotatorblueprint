@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './index.scss';
 import Header from './components/Header.js'
-import SearchBox from './components/SearchBox';
-// import { Classes } from "@blueprintjs/core"
+import Search from './components/Search'
 
 class App extends Component {
 
@@ -26,9 +25,7 @@ class App extends Component {
         return (
             <div className={((this.state.darkMode) ? "light-bg" : "dark-bg")}>
                 <Header changeMode={ this.changeMode } />
-                <div id="content">
-                    <SearchBox />
-                </div>
+                <Search />
             </div>
         );
     }
