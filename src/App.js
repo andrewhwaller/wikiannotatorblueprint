@@ -3,6 +3,11 @@ import './App.css';
 import './index.scss';
 import Header from './components/Header.js'
 import Search from './components/Search'
+import Home from './components/Home'
+import {
+    Switch,
+    Route,
+  } from 'react-router-dom';
 
 class App extends Component {
 
@@ -23,10 +28,17 @@ class App extends Component {
         document.body.className = ((this.state.darkMode) ? "bp3-dark" : "");
         
         return (
-            <div className={((this.state.darkMode) ? "light-bg" : "dark-bg")}>
-                <Header changeMode={ this.changeMode } />
-                <Search />
-            </div>
+            <Switch>
+                <div className={((this.state.darkMode) ? "light-bg" : "dark-bg")}>
+                    <Header changeMode={ this.changeMode } />
+                    <Route path="/search">
+                        <Search />
+                    </Route>
+                    <Route path="/">
+                        <Home />
+                    </Route>
+                </div>
+            </Switch>
         );
     }
 }
