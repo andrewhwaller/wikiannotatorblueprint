@@ -31,12 +31,12 @@ class App extends Component {
             <Switch>
                 <div className={((this.state.darkMode) ? "light-bg" : "dark-bg")}>
                     <Header changeMode={ this.changeMode } />
-                    <Route path="/search">
-                        <Search />
-                    </Route>
-                    <Route path="/">
-                        <Home />
-                    </Route>
+                    <Route component={ Search } exact path="/search" />
+                        {/* <Search /> */}
+                    {/* </Route> */}
+                    <Route component={ Home } path="/" />
+                        {/* <Home /> */}
+                    {/* </Route> */}
                 </div>
             </Switch>
         );
