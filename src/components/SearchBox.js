@@ -4,19 +4,25 @@ import WikiSearchExtension from './WikiSearchExtension';
 import ResultItem from './ResultItem';
 
 class SearchBox extends Component {
-
+    // const divStyle = {
+    //     color: 'blue',
+    //     backgroundImage: 'url(' + imgUrl + ')',
+    //   };
+    
     render() {
         return (
             <div className="searchContainer">
-                <div className="bp3-input-group bp3-large searchInputContainer">
+                <div className="searchInputContainer">
                     <Omnibar
+                        className={"bp3-input"}
                         placeholder="Start typing to search Wikipedia..."
                         maxResults={10}
                         maxViewableResults={5}
+                        render={ResultItem}
                         extensions={[
                             WikiSearchExtension
                         ]}>
-                        {ResultItem}
+                        {/* {ResultItem} */}
                     </Omnibar>
                 </div>
             </div>

@@ -29,7 +29,8 @@ class App extends Component {
         
         return (
             <Switch>
-                <div className={((this.state.darkMode) ? "light-bg" : "dark-bg")}>
+                <Route>
+                <div className={((this.state.darkMode) ? `light-bg` : `dark-bg`)}>
                     <Header changeMode={ this.changeMode } />
                     <Route component={ Search } exact path="/search" />
                         {/* <Search /> */}
@@ -38,6 +39,7 @@ class App extends Component {
                         {/* <Home /> */}
                     {/* </Route> */}
                 </div>
+                </Route>
             </Switch>
         );
     }

@@ -102,13 +102,14 @@ code {
              -15px 15px 30px #ffffff;
 }
 
-.results-list-item > a {
+.result-item > a {
     display: flex;
     flex-direction: column;
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-decoration: none;
 }
 
 .result-snippet {
