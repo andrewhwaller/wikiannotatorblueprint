@@ -14,7 +14,7 @@ class SearchBox extends Component {
                         maxResults={10}
                         maxViewableResults={5}
                         extensions={[
-                            WikiSearchExtension,
+                            WikiSearchExtension
                         ]}>
                         {ResultItem}
                     </Omnibar>

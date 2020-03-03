@@ -6,8 +6,7 @@ export default function WikiSearchExtension(query) {
     
     if (query) {
         return axios.get(endpoint)
-        .then(res => res.data.query.search.map(
-            item => ({
+        .then(res => res.data.query.search.map(item => ({
                 title: item.title,
                 subtitle: item.snippet,
                 url: "http://en.wikipedia.org/?curid=" + item.pageid

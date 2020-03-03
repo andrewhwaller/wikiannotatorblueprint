@@ -63,9 +63,13 @@ code {
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin-top: calc(25 * #{$pt-grid-size});
     margin-left: auto;
     margin-right: auto;
+}
+
+.searchInputContainer {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .dark-bg {
