@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function ResultItem(props) {
+    
     return (
         <li className="bp3-menu-item result-item">
             <a href={ props.item.url } className="">
