@@ -8,16 +8,15 @@ import DarkModeSwitch from "./DarkModeSwitch"
 FocusStyleManager.onlyShowFocusOnTabs();
 
 class Header extends Component {
-
     render() {
 
         return (
             <Navbar>
                 <Navbar.Group align={Alignment.LEFT}>
                     <Navbar.Heading>
-                        <NavLink to="/" className="brand" intent="secondary" style={{textDecoration: "none"}}>
+                        <span className="brand">
                             <span className="brandText">Wiki</span><span>Annotator</span>
-                        </NavLink>
+                        </span>
                     </Navbar.Heading>
                     <Navbar.Divider />
                     <NavLink to="/" className="bp3-button bp3-minimal bp3-icon-home header-button" activeClassName="bp3-active" exact>

@@ -32,28 +32,14 @@ code {
     display: flex;
 }
 
-.dark-bg {
-    background-color: $pt-app-background-color;
-}
-
-.light-bg {
-    background-color: $pt-dark-app-background-color;
-}
-
-.brand, .brand:hover {
+.brand {
     margin-left: $pt-grid-size;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 300;
-    color: $dark-gray1;
-    text-decoration: none;
 }
 
 .brandText {
     font-family: 'Germania One', ;
-}
-
-.header-button {
-    margin-right: $pt-grid-size;
 }
 
 .switchContainer {
@@ -86,6 +72,14 @@ code {
     margin-bottom: auto;
 }
 
+.dark-bg {
+    background-color: $pt-app-background-color;
+}
+
+.light-bg {
+    background-color: $pt-dark-app-background-color;
+}
+
 .results-container {
     display: flex;
     flex-direction: column;
@@ -94,6 +88,18 @@ code {
     margin-right: auto;
     height: auto;
     width: 100%;
+}
+
+.results-list {
+    background: transparent;
+}
+
+.results-list-shadow {
+    padding: calc(2 * #{$pt-grid-size});
+    border-radius: 10px;
+    background: #f5f8fa;
+    box-shadow:  15px -15px 30px #e9ecee, 
+             -15px 15px 30px #ffffff;
 }
 
 .result-item > a {
@@ -115,4 +121,8 @@ code {
 .result-snippet > .searchmatch {
     color: $pt-dark-link-color;
     font-weight: bold;
+}
+
+.header-button {
+    margin-right: $pt-grid-size;
 }
