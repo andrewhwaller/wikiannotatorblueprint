@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Omnibar from 'omnibar';
-import WikiSearchExtension from './WikiSearchExtension';
+import WikiSearchExtension from './extensions/WikiSearchExtension';
 import ResultItem from './ResultItem';
 
 class SearchBox extends Component {

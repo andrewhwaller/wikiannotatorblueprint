@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './index.scss';
 import Header from './components/Header.js'
-import Search from './components/Search'
+import Search from './components/SearchContainer'
 import Home from './components/Home'
 import {
     Switch,
@@ -32,12 +32,10 @@ class App extends Component {
                 <Route>
                 <div className={((this.state.darkMode) ? `light-bg` : `dark-bg`)}>
                     <Header changeMode={ this.changeMode } />
-                    <Route component={ Search } exact path="/search" />
-                        {/* <Search /> */}
-                    {/* </Route> */}
-                    <Route component={ Home } exact path="/" />
-                        {/* <Home /> */}
-                    {/* </Route> */}
+                    <div id="content">
+                        <Route component={ Search } exact path="/search" />
+                        <Route component={ Home } exact path="/" />
+                    </div>
                 </div>
                 </Route>
             </Switch>
