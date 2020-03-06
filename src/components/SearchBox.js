@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Omnibar from 'omnibar';
-import WikiSearchExtension from './WikiSearchExtension';
-import ResultItem from './ResultItem';
+import Omnibar from "omnibar";
+import WikiSearchExtension from "./WikiSearchExtension";
+import ResultItem from "./ResultItem";
 
 class SearchBox extends Component {
-    
     render() {
         return (
             <div className="searchContainer">
@@ -17,25 +16,27 @@ class SearchBox extends Component {
                         childclass={"input"}
                         maxViewableResults={5}
                         render={ResultItem}
-                        extensions={[
-                            WikiSearchExtension
-                        ]}>
-                    </Omnibar>
+                        extensions={[WikiSearchExtension]}
+                    ></Omnibar>
                 </div>
             </div>
-        )
+        );
     }
 
-    componentDidMount(){
-         const searchbox = document.getElementById("omnibarInput");
-         searchbox.style.removeProperty("border-color")
-         searchbox.style.removeProperty("border-style")
-         document.getElementById("omnibarInput").addEventListener("focus", () => {
-            const ul = document.querySelector(".searchInputContainer > div > ul");
-            ul.classList.add("bp3-menu", "bp3-elevation-1")
-            ul.style.removeProperty("background-color")
-            ul.style.removeProperty("border-bottom")
-        })
+    componentDidMount() {
+        const searchbox = document.getElementById("omnibarInput");
+        searchbox.style.removeProperty("border-color");
+        searchbox.style.removeProperty("border-style");
+        document
+            .getElementById("omnibarInput")
+            .addEventListener("focus", () => {
+                const ul = document.querySelector(
+                    ".searchInputContainer > div > ul"
+                );
+                ul.classList.add("bp3-menu", "bp3-elevation-1");
+                ul.style.removeProperty("background-color");
+                ul.style.removeProperty("border-bottom");
+            });
     }
 }
 
