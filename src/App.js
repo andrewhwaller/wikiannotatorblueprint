@@ -5,17 +5,18 @@ import { connect } from 'react-redux';
 
 // Blueprint.js components
 
-// custom components
-import Header from "./components/Header.js";
-import Search from "./components/Search";
-import Home from "./components/Home";
-
-// actions
-import { simpleAction } from './actions/simpleAction';
-
 // CSS
 import "./App.css";
 import "./index.scss";
+
+// custom components
+import Header from "./components/Header";
+import Search from "./components/Search";
+import Home from "./components/Home";
+import TextDisplay from "./components/TextDisplay";
+
+// actions
+import { displayArticle } from './actions/displayArticle';
 
 class App extends Component {
     constructor() {
@@ -43,11 +44,11 @@ class App extends Component {
                     <div
                         className={this.state.darkMode ? `light-bg` : `dark-bg`}
                     >
-                        <button onClick={this.simpleAction}>Test redux action</button>
                         <Header changeMode={ this.changeMode } />
                         <pre>{ JSON.stringify(this.props) }</pre>
-                        <Route component={Search} exact path="/search" />
-                        <Route component={Home} exact path="/" />
+                        <Route component={ Search } exact path="/search" />
+                        <Route component={ TextDisplay } exact path="/article" />
+                        <Route component={ Home } exact path="/" />
                     </div>
                 </Route>
             </Switch>
@@ -60,7 +61,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    simpleAction: () => dispatch(simpleAction())
+    displayArticle: () => dispatch(displayArticle())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

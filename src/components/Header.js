@@ -41,6 +41,14 @@ class Header extends Component {
                     >
                         Search
                     </NavLink>
+                    <NavLink
+                        to="/article"
+                        className="bp3-button bp3-minimal bp3-icon-document header-button"
+                        activeClassName="bp3-active"
+                    >
+                        Article
+                    </NavLink>
+                    <button onClick={this.displayArticle}>Test redux action</button>
                 </Navbar.Group>
                 <Navbar.Group align={Alignment.RIGHT}>
                     <Popover
