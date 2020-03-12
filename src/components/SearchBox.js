@@ -23,21 +23,21 @@ class SearchBox extends Component {
         );
     }
 
-    componentDidMount() {
-        const searchbox = document.getElementById("omnibarInput");
-        searchbox.style.removeProperty("border-color");
-        searchbox.style.removeProperty("border-style");
-        document
-            .getElementById("omnibarInput")
-            .addEventListener("focus", () => {
-                const ul = document.querySelector(
-                    ".searchInputContainer > div > ul"
-                );
-                ul.classList.add("bp3-menu", "bp3-elevation-1");
-                ul.style.removeProperty("background-color");
-                ul.style.removeProperty("border-bottom");
-            });
-    }
+    // componentDidMount() {
+    //     const searchbox = document.getElementById("omnibarInput");
+    //     searchbox.style.removeProperty("border-color");
+    //     searchbox.style.removeProperty("border-style");
+    //     document
+    //         .getElementById("omnibarInput")
+    //         .addEventListener("focus", () => {
+    //             const ul = document.querySelector(
+    //                 ".searchInputContainer > div > ul"
+    //             );
+    //             ul.classList.add("bp3-menu", "bp3-elevation-1");
+    //             ul.style.removeProperty("background-color");
+    //             ul.style.removeProperty("border-bottom");
+    //         });
+    // }
 }
 
 export default SearchBox;
