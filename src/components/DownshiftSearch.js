@@ -22,7 +22,7 @@ class DownshiftSearch extends Component {
         
         if (value) {
             search.then(res => res.data.query.search.map(item => {
-                return this.state.items.push({
+                this.state.items.push({
                     title: item.title,
                     subtitle: item.snippet,
                     url: "http://en.wikipedia.org/?curid=" + item.pageid
@@ -36,17 +36,19 @@ class DownshiftSearch extends Component {
     fetchResults(query) {
         const search = axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${query}`)
 
-        search.then(response => {
-            this.setState({
-                items: response.data.query.search.map(item => {
-                    return {
-                        title: item.title,
-                        subtitle: item.snippet,
-                        url: "http://en.wikipedia.org/?curid=" + item.pageid
-                    }
+        if (query) {
+            search.then(response => {
+                this.setState({
+                    items: response.data.query.search.map(item => {
+                        return {
+                            title: item.title,
+                            subtitle: item.snippet,
+                            url: "http://en.wikipedia.org/?curid=" + item.pageid
+                        }
+                    })
                 })
             })
-        })
+        }
     }
 
     render() {
@@ -59,7 +61,7 @@ class DownshiftSearch extends Component {
                 alert('selection cleared')
             }
             }}
-            onInputValueChange={value => this.handleInput(value)}
+            onInputValueChange={value => this.fetchResults(value)}
             itemToString={item => (item ? item.value : '')}
         >
             {({
@@ -93,16 +95,15 @@ class DownshiftSearch extends Component {
                         // >
                         //     {item.title}
                         // </li>
-                        <li className="bp3-menu-item result-item"
-                            {...getItemProps({
+                        <li className="bp3-menu-item result-item" {...getItemProps({
                                 key: item.pageid,
                                     index,
-                                    item
-                                    // style: {
-                                    //     backgroundColor:
-                                    //     highlightedIndex === index ? 'lightgray' : null,
-                                    //     fontWeight: selectedItem === item ? 'bold' : 'normal',
-                                    // },
+                                    item,
+                                    style: {
+                                        backgroundColor:
+                                        highlightedIndex === index ? 'lightgray' : null,
+                                        fontWeight: selectedItem === item ? 'bold' : 'normal',
+                                    },
                         })}>
                         <a href={item.url} className="">
                             <span className="bp3-text-large">{item.title}</span>
