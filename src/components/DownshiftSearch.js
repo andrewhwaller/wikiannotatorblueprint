@@ -98,12 +98,12 @@ class DownshiftSearch extends Component {
                         <li className="bp3-menu-item result-item" {...getItemProps({
                                 key: item.pageid,
                                     index,
-                                    item,
-                                    style: {
-                                        backgroundColor:
-                                        highlightedIndex === index ? 'lightgray' : null,
-                                        fontWeight: selectedItem === item ? 'bold' : 'normal',
-                                    },
+                                    item
+                                    // style: {
+                                    //     backgroundColor:
+                                    //     highlightedIndex === index ? 'lightgray' : null,
+                                    //     fontWeight: selectedItem === item ? 'bold' : 'normal',
+                                    // },
                         })}>
                         <a href={item.url} className="">
                             <span className="bp3-text-large">{item.title}</span>
