@@ -12,26 +12,26 @@ class DownshiftSearch extends Component {
         };
     }
 
-    handleInput(value) {
-        this.setState({
-            items: []
-        })
+    // handleInput(value) {
+    //     this.setState({
+    //         items: []
+    //     })
         
-        console.log(value, this.state.items)
-        const search = axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${value}`)
+    //     console.log(value, this.state.items)
+    //     const search = axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${value}`)
         
-        if (value) {
-            search.then(res => res.data.query.search.map(item => {
-                this.state.items.push({
-                    title: item.title,
-                    subtitle: item.snippet,
-                    url: "http://en.wikipedia.org/?curid=" + item.pageid
-                })
-            })
-            )
-            console.log(this.state.items)
-        }
-    }
+    //     if (value) {
+    //         search.then(res => res.data.query.search.map(item => {
+    //             this.state.items.push({
+    //                 title: item.title,
+    //                 subtitle: item.snippet,
+    //                 url: "http://en.wikipedia.org/?curid=" + item.pageid
+    //             })
+    //         })
+    //         )
+    //         console.log(this.state.items)
+    //     }
+    // }
 
     fetchResults(query) {
         const search = axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${query}`)
@@ -76,36 +76,19 @@ class DownshiftSearch extends Component {
             }) => (
             <div className="searchInputContainer">
                 <input className="bp3-input bp3-large bp3-fill bp3-icon-search" placeholder="Begin typing to search Wikipedia..." {...getInputProps()} />
-                <ul className="bp3-menu" {...getMenuProps()}>
+                <ul className="bp3-menu" style={ isOpen ? { display: 'block'} : { display: 'none' } } {...getMenuProps()}>
                 {isOpen
                     ? this.state.items
-                        // .filter(item => !inputValue || item.value.includes(inputValue))
                         .map((item, index) => (
-                        // <li className="bp3-menu-item"
-                        //     {...getItemProps({
-                        //     key: item.pageid,
-                        //     index,
-                        //     item,
-                        //     style: {
-                        //         backgroundColor:
-                        //         highlightedIndex === index ? 'lightgray' : null,
-                        //         fontWeight: selectedItem === item ? 'bold' : 'normal',
-                        //     },
-                        //     })}
-                        // >
-                        //     {item.title}
-                        // </li>
-                        <li className="bp3-menu-item result-item" {...getItemProps({
-                                key: item.pageid,
+                            <li key="key"
+                                className="bp3-menu-item result-item"
+                                { ...getItemProps({
+                                    key: item.pageid,
                                     index,
                                     item
-                                    // style: {
-                                    //     backgroundColor:
-                                    //     highlightedIndex === index ? 'lightgray' : null,
-                                    //     fontWeight: selectedItem === item ? 'bold' : 'normal',
-                                    // },
-                        })}>
-                        <a href={item.url} className="">
+                                }) }
+                            >
+                        <a href={item.url}>
                             <span className="bp3-text-large">{item.title}</span>
                             <span
                                 className="bp3-text-small bp3-text-muted bp3-text-overflow-ellipsis result-snippet"

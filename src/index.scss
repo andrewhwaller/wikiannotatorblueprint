@@ -90,10 +90,6 @@ code {
     width: 100%;
 }
 
-.results-list {
-    background: transparent;
-}
-
 .results-list-shadow {
     padding: calc(2 * #{$pt-grid-size});
     border-radius: 10px;
@@ -101,6 +97,10 @@ code {
     box-shadow:  15px -15px 30px #e9ecee, 
              -15px 15px 30px #ffffff;
 }
+
+// .result-item {
+//     padding: 10px;
+// }
 
 .result-item > a {
     display: flex;
