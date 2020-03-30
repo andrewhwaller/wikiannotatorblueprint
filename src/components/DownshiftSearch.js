@@ -56,7 +56,7 @@ class DownshiftSearch extends Component {
             <Downshift
             onChange={selection => {
             if (selection) {
-                alert(`You selected ${selection.value}`)
+                alert(`You selected ${selection.title}`)
             } else {
                 alert('selection cleared')
             }
