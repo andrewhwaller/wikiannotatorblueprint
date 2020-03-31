@@ -1,7 +1,7 @@
 // React components
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // Blueprint.js components
 
@@ -46,9 +46,9 @@ class App extends Component {
                     >
                         <Header changeMode={ this.changeMode } />
                         <pre>{ JSON.stringify(this.props) }</pre>
+                        <Route component={ Home } exact path="/" />
                         <Route component={ Search } exact path="/search" />
                         <Route component={ TextDisplay } exact path="/article" />
-                        <Route component={ Home } exact path="/" />
                     </div>
                 </Route>
             </Switch>
