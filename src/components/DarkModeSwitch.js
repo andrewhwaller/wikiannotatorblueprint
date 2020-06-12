@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Switch, Icon } from "@blueprintjs/core";
+import { changeMode } from "../actions/darkMode";
 
 class DarkModeSwitch extends Switch {
     constructor() {
@@ -14,7 +16,7 @@ class DarkModeSwitch extends Switch {
         this.setState({
             checked: !this.state.checked
         });
-        this.props.changeMode(!this.state.checked);
+        this.props.changeMode(this.state.checked)
     }
 
     render() {
@@ -30,4 +32,16 @@ class DarkModeSwitch extends Switch {
     }
 }
 
-export default DarkModeSwitch;
+const mapStateToProps = state => {
+    return {
+        darkMode: state.darkMode
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        changeMode: value => dispatch(changeMode(value))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DarkModeSwitch);

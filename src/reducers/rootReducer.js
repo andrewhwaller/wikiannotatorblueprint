@@ -1,6 +1,8 @@
-import { combineReducers } from "redux";
-import simpleReducer from './simpleReducer';
+// import { combineReducers } from "redux";
+// import article from "./article";
+// import mode from "./darkMode";
 
-export default combineReducers({
-    simpleReducer
-});
+// export default combineReducers({
+//     article,
+//     mode
+// });

@@ -1,13 +1,14 @@
 // React components/global components
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-// import { createStore } from 'redux';
 import { Provider } from "react-redux";
-import App from "./App";
-import configureStore from "./store";
-import * as serviceWorker from "./serviceWorker";
-
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
+import thunk from "redux-thunk";
+import article from "./reducers/article";
+import darkMode from "./reducers/darkMode";
 // Blueprint.js components
 
 // custom components
@@ -16,14 +17,29 @@ import * as serviceWorker from "./serviceWorker";
 
 // CSS
 import "./index.scss";
+// 
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const reducers = combineReducers(
+    {
+        article,
+        darkMode
+    }
+)
+
+const store = createStore(
+    reducers,
+    composeEnhancer(applyMiddleware(thunk))
+)
 
 ReactDOM.render(
-    <Provider store={ configureStore() }>
+    <Provider store={ store }>
         <Router>
             <App />
         </Router>
     </Provider>,
-        document.getElementById("root")
-    );
+    document.getElementById("root")
+);
     
-    serviceWorker.unregister();
+serviceWorker.unregister();

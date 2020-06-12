@@ -9,43 +9,28 @@ import { connect } from "react-redux";
 import "./App.css";
 import "./index.scss";
 
-// custom components
+// Custom components
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Home from "./components/Home";
 import TextDisplay from "./components/TextDisplay";
 
-// actions
-import { displayArticle } from './actions/displayArticle';
+// Actions
+import { setArticle, getArticle } from "./actions/article";
+import { changeMode } from "./actions/darkMode";
 
 class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            darkMode: false
-        };
-        this.changeMode = this.changeMode.bind(this);
-    }
-
-    changeMode = value => {
-        this.setState({ darkMode: value });
-    };
-
-    simpleAction = (event) => {
-        this.props.simpleAction();
-    }
 
     render() {
-        document.body.className = this.state.darkMode ? "bp3-dark" : "";
+        document.body.className = this.props.darkMode ? "bp3-dark" : "";
 
         return (
             <Switch>
                 <Route>
                     <div
-                        className={this.state.darkMode ? `light-bg` : `dark-bg`}
+                        className={this.props.darkMode ? `light-bg` : `dark-bg`}
                     >
-                        <Header changeMode={ this.changeMode } />
-                        <pre>{ JSON.stringify(this.props) }</pre>
+                        <Header changeMode={ this.props.changeMode } />
                         <Route component={ Home } exact path="/" />
                         <Route component={ Search } exact path="/search" />
                         <Route component={ TextDisplay } exact path="/article" />
@@ -56,12 +41,11 @@ class App extends Component {
     };
 }
 
-const mapStateToProps = state => ({
-    ...state
-})
+const mapStateToProps = state => {
+    return ({
+        article: state.article,
+        darkMode: state.darkMode
+    })
+}
 
-const mapDispatchToProps = dispatch => ({
-    displayArticle: () => dispatch(displayArticle())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, { setArticle, getArticle, changeMode })(App);
