@@ -12,27 +12,6 @@ class DownshiftSearch extends Component {
         };
     }
 
-    // handleInput(value) {
-    //     this.setState({
-    //         items: []
-    //     })
-        
-    //     console.log(value, this.state.items)
-    //     const search = axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${value}`)
-        
-    //     if (value) {
-    //         search.then(res => res.data.query.search.map(item => {
-    //             this.state.items.push({
-    //                 title: item.title,
-    //                 subtitle: item.snippet,
-    //                 url: "http://en.wikipedia.org/?curid=" + item.pageid
-    //             })
-    //         })
-    //         )
-    //         console.log(this.state.items)
-    //     }
-    // }
-
     fetchResults(query) {
         const search = axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${query}`)
 

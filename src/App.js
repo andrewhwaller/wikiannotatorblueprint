@@ -14,6 +14,7 @@ import Header from "./components/Header";
 import Search from "./components/Search";
 import Home from "./components/Home";
 import TextDisplay from "./components/TextDisplay";
+import ArticleEditor from "./components/ArticleEditor";
 
 // Actions
 import { setArticle, getArticle } from "./actions/article";
