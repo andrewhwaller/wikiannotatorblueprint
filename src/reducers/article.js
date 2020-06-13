@@ -1,4 +1,4 @@
-export default (state = false, action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case "SET_ARTICLE":
             return action.article;

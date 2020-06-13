@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import article from "./reducers/article";
+import articleDirty from "./reducers/articleDirty";
 import darkMode from "./reducers/darkMode";
 // Blueprint.js components
 
@@ -24,6 +25,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reducers = combineReducers(
     {
         article,
+        articleDirty,
         darkMode
     }
 )

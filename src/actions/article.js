@@ -12,3 +12,17 @@ export const getArticle = article => {
             .then(() => dispatch(setArticle(article)))
     }
 };
+
+export const setDirtyFalse = value => {
+    return {
+        type: "SET_DIRTY_FALSE",
+        dirty: value
+    }
+}
+
+export const setDirtyTrue = value => {
+    return {
+        type: "SET_DIRTY_TRUE",
+        dirty: value
+    }
+}
