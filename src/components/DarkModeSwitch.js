@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Switch, Icon } from "@blueprintjs/core";
+import { Switch, Icon, Colors } from "@blueprintjs/core";
 import { changeMode } from "../actions/darkMode";
 
 class DarkModeSwitch extends Switch {
@@ -21,9 +21,15 @@ class DarkModeSwitch extends Switch {
 
     render() {
         return (
-            <div className="switchContainer">
-                <Icon icon="moon" className="switchIcon" />
+            <div className={"switchContainer ml-1"}>
+                <Icon 
+                    icon={this.props.darkMode ? `flash` : `moon`} 
+                    iconSize={15} 
+                    // style={this.props.darkMode ? {} : {color: Colors.GOLD5}}
+                />
                 <Switch
+                    style={{marginLeft: "0.5rem"}}
+                    large={true}
                     checked={this.state.checked}
                     onChange={this.handleSwitch}
                 />
