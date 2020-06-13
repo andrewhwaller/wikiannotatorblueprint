@@ -48,7 +48,6 @@ class Header extends Component {
                     >
                         Article
                     </NavLink>
-                    <button onClick={this.displayArticle}>Test redux action</button>
                 </Navbar.Group>
                 <Navbar.Group align={Alignment.RIGHT}>
                     <Popover

@@ -43,7 +43,7 @@ class RichTextEditor extends Component {
 
 	render() {
 	    return (
-	      <div>
+	      <div class="editor-container d-flex-column w-100">
 	        <ReactQuill theme="snow"  modules={this.modules}
 				formats={this.formats} onChange={this.rteChange}
 			value={this.state.comments || ''}/>
