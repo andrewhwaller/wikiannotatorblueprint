@@ -16,7 +16,7 @@ import Home from "./components/Home";
 import TextDisplay from "./components/TextDisplay";
 
 // Actions
-import { setArticle, getArticle } from "./actions/article";
+import { setArticle, getArticleFromSearch } from "./actions/article";
 import { changeMode } from "./actions/darkMode";
 
 class App extends Component {
@@ -48,4 +48,4 @@ const mapStateToProps = state => {
     })
 }
 
-export default connect(mapStateToProps, { setArticle, getArticle, changeMode })(App);
+export default connect(mapStateToProps, { setArticle, getArticleFromSearch, changeMode })(App);

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Switch, Icon, Colors } from "@blueprintjs/core";
+import { Switch, Icon } from "@blueprintjs/core";
 import { changeMode } from "../actions/darkMode";
 
 class DarkModeSwitch extends Switch {

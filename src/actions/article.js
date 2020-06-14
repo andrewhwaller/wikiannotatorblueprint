@@ -1,15 +1,25 @@
 export const setArticle = article => {
-    return {
-        type: "SET_ARTICLE",
-        article: article
+    if (article) {
+        console.log(article)
+        return {
+            type: "SET_ARTICLE",
+            article: article
+        }
+    } else {
+        return
     }
 }
 
-export const getArticle = article => {
+export const getArticleFromSearch = article => {
     return dispatch => {
-        return fetch(`https://en.wikipedia.org/w/api.php?action=parse&page=${article.pageid}&prop=text&formatversion=2`)
-            .then(response => response.json())
-            .then(() => dispatch(setArticle(article)))
+        return fetch(`https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&titles=${article.title}`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                return data.query.pages[article.pageid].extract;
+            })
+            .then(result => dispatch({ type: "SET_ARTICLE", result}))
     }
 };
 
