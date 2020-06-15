@@ -39,21 +39,15 @@ class ArticleEditor extends Component {
 	}
 
 	rteChange = (content, delta, source, editor) => {
-        console.log(editor.getHTML()); // rich text
         this.props.setDirtyTrue(true)
-        console.log()
-        this.props.setDirtyTrue(true)
-        
-		// console.log(editor.getText()); // plain text
-		// console.log(editor.getLength()); // number of characters
 	}
 
 	render() {
 	    return (
-	      <div className={"editor-container d-flex-column w-100"}>
+	      <div className={"editor-container d-flex-column w-100 h-100"}>
 	        <ReactQuill theme="snow"  modules={this.modules}
 				formats={this.formats} onChange={this.rteChange}
-			value={this.state.comments || ''}/>
+			value={this.props.article || ""}/>
 	      </div>
 	    );
 	}
@@ -62,7 +56,8 @@ class ArticleEditor extends Component {
 
 const mapStateToProps = state => {
     return {
-        dirty: state.dirty
+		dirty: state.dirty,
+		article: state.article.extract
     }
 }
 
