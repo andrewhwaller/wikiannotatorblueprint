@@ -41,6 +41,11 @@ class Header extends Component {
                     >
                         Search
                     </NavLink>
+                    {/* {
+                        if () {
+
+                        }
+                    } */}
                     <NavLink
                         to="/article"
                         className="bp3-button bp3-minimal bp3-icon-document header-button"

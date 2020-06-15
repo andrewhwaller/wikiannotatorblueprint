@@ -17,9 +17,10 @@ export const getArticleFromSearch = article => {
                 return response.json();
             })
             .then((data) => {
-                return data.query.pages[article.pageid].extract;
+                console.log(data.query.pages[article.pageid])
+                return data.query.pages[article.pageid];
             })
-            .then(result => dispatch({ type: "SET_ARTICLE", result}))
+            // .then(result => dispatch({ type: "SET_ARTICLE", result}))
     }
 };
 
