@@ -16,7 +16,7 @@ import Home from "./components/Home";
 import TextDisplay from "./components/TextDisplay";
 
 // Actions
-import { setArticle, getArticleFromSearch } from "./actions/article";
+import { setArticle, getArticleFromSearch, setLoadingTrue, setLoadingFalse } from "./actions/article";
 import { changeMode } from "./actions/darkMode";
 
 class App extends Component {
@@ -44,8 +44,16 @@ class App extends Component {
 const mapStateToProps = state => {
     return ({
         article: state.article,
+        articleLoading: state.articleLoading,
         darkMode: state.darkMode
     })
 }
 
-export default connect(mapStateToProps, { setArticle, getArticleFromSearch, changeMode })(App);
+export default connect(mapStateToProps, 
+                        { 
+                            setArticle, 
+                            getArticleFromSearch, 
+                            setLoadingTrue, 
+                            setLoadingFalse, 
+                            changeMode 
+                        })(App);

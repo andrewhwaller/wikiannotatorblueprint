@@ -9,6 +9,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import article from "./reducers/article";
 import articleDirty from "./reducers/articleDirty";
+import articleLoading from "./reducers/articleLoading";
 import darkMode from "./reducers/darkMode";
 // Blueprint.js components
 
@@ -26,6 +27,7 @@ const reducers = combineReducers(
     {
         article,
         articleDirty,
+        articleLoading,
         darkMode
     }
 )
