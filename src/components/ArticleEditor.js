@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ReactQuill from 'react-quill';
+import React, { Component } from "react";
+import ReactQuill from "react-quill";
 import { connect } from "react-redux";
 import { setDirtyTrue } from "../actions/article"
-import 'react-quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.bubble.css';
+import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
 
 class ArticleEditor extends Component {
 	constructor(props) {
@@ -47,7 +47,8 @@ class ArticleEditor extends Component {
 	      <div className={"editor-container d-flex-column w-100 h-100"}>
 	        <ReactQuill theme="snow"  modules={this.modules}
 				formats={this.formats} onChange={this.rteChange}
-			value={this.props.article || ""}/>
+				value={this.props.article || ""}
+			/>
 	      </div>
 	    );
 	}
