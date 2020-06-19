@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Button, InputGroup, Intent, Tooltip } from "@blueprintjs/core"
 
 class LoginInput extends Component {
@@ -27,10 +27,11 @@ class LoginInput extends Component {
         );
 
         return (
-            <div>
-                <InputGroup leftIcon="user" large="true" className="mb-1 mt-5" placeholder="Enter your email address..." type="email" />
-                <InputGroup leftIcon="key" large="true" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password"} rightElement={ lockButton }/>
-            </div>
+            <Fragment>
+                <InputGroup leftIcon="user" large="true" className="mb-1" placeholder="Enter your email address..." type="email" />
+                <InputGroup leftIcon="key" large="true" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } />
+                <Button intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" } >Log In</Button>     
+            </Fragment>
         )
     }
 }

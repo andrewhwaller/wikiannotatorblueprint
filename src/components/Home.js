@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LoginInput from "./LoginInput"
+import { Button, Intent } from "@blueprintjs/core"
 // import cherrySearching from "../cherry-searching.png"
 import blog from "../blog.svg"
 
@@ -14,8 +15,12 @@ class Home extends Component {
                             <span>Annotator</span>
                         </span>
                         <h4 className="mx-auto bp3-heading" style={ { textAlign: "center" } }>Note what you need, not what you don't.</h4>
-                        <div className="d-flex-column mx-auto" style={{ width: "50%" }}>
-                            <LoginInput />
+                        <div className="d-flex-column mx-auto" style={ { width: "50%" } }> 
+                            <Button intent={ Intent.SUCCESS } style={{ marginTop: "0.25rem"}} large={ "large" } minimal={ "minimal" }>CREATE ACCOUNT?</Button>
+                            <div className="mt-1">
+                                <LoginInput />
+                            </div>
+                            <Button intent={ Intent.NONE } className="" rightIcon={ "help" } large={ "small" } minimal={ "minimal" }>Forgot password?</Button>
                         </div>
                     </div>
                     <img className="my-auto ml-5 mr-auto" style={ { maxHeight: "30rem" } }src={blog} alt="Logo" />
