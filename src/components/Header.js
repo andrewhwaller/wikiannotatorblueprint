@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar } from "@blueprintjs/core";
-import { Button } from "@blueprintjs/core";
+import { connect } from "react-redux";
 import {
     Alignment,
+    Button,
     FocusStyleManager,
     Menu,
     MenuItem,
+    Navbar,
     Popover,
     Position
 } from "@blueprintjs/core";
@@ -41,18 +42,15 @@ class Header extends Component {
                     >
                         Search
                     </NavLink>
-                    {/* {
-                        if () {
-
-                        }
-                    } */}
-                    <NavLink
-                        to="/article"
-                        className="bp3-button bp3-minimal bp3-icon-document header-button"
-                        activeClassName="bp3-active"
-                    >
-                        Article
-                    </NavLink>
+                    { this.props.article.length !== 0 && 
+                        <NavLink
+                            to="/article"
+                            className="bp3-button bp3-minimal bp3-icon-document header-button"
+                            activeClassName="bp3-active"
+                        >
+                            Article
+                        </NavLink>
+                    }
                 </Navbar.Group>
                 <Navbar.Group align={Alignment.RIGHT}>
                     <Popover
@@ -75,4 +73,10 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return {
+        article: state.article,
+    }
+}
+
+export default connect(mapStateToProps)(Header);

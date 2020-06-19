@@ -55,7 +55,7 @@ class DownshiftSearch extends Component {
                 highlightedIndex,
                 selectedItem,
                 }) => (
-                <div className="mt-5 d-flex-column h-100 w-100">
+                <div className="d-flex-row w-100">
                     <div className="w-75 mx-auto">
                         <input className="bp3-input bp3-large bp3-fill bp3-icon-search w-100 mx-auto" placeholder="Begin typing to search Wikipedia..." {...getInputProps()} />
                         <ul className="bp3-menu w-100 mx-auto" style={ isOpen ? { display: 'block' } : { display: 'none' } } {...getMenuProps()}>

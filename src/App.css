@@ -41,6 +41,15 @@
   height: calc(100vh - 50px);
 }
 
+.tile-button {
+    width: 15rem;
+    height: 15rem;
+}
+
+.tile-container {
+    justify-content: space-between;
+}
+
 .d-flex {
   display: flex;
 }
@@ -103,6 +112,14 @@
   margin-right: auto;
 }
 
+.mr-3 {
+    margin-right: 3rem;
+}
+  
+.mr-5 {
+    margin-right: 5rem;
+}
+
 .mt-auto {
   margin-top: auto;
 }
@@ -134,7 +151,7 @@
 }
 
 .ql-container {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .quill {

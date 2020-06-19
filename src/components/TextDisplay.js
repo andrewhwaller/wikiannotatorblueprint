@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ArticleEditor from "./ArticleEditor";
-import { Button, Colors, Spinner } from "@blueprintjs/core";
+import { Button, Spinner } from "@blueprintjs/core";
 import { connect } from "react-redux";
 
 class TextDisplay extends Component {
@@ -11,7 +11,7 @@ class TextDisplay extends Component {
                     <div className={"d-flex-row h-100"}>
                         <div className={"mx-auto mb-auto"} style={{marginTop: "15rem"}}>
                             <Spinner className={""} intent={"primary"} size={150} />
-                            <h2 class="bp3-text-muted">Loading article...</h2>
+                            <h2 className="bp3-text-muted">Loading article...</h2>
                         </div>
                     </div> 
                 :
