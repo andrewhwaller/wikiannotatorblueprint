@@ -19,7 +19,7 @@ class LoginInput extends Component {
                 <Button
                     disabled={this.state.disabled}
                     icon={this.state.showPassword ? "unlock" : "lock"}
-                    intent={Intent.WARNING}
+                    intent={this.state.showPassword ? Intent.PRIMARY : Intent.DANGER}
                     minimal={true}
                     onClick={this.handleLockClick}
                 />

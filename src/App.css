@@ -108,6 +108,18 @@
   margin-left: auto;
 }
 
+.ml-3 {
+    margin-left: 3rem;
+}
+  
+.ml-5 {
+    margin-left: 5rem;
+}
+
+.ml-7 {
+    margin-left: 7rem;
+}
+
 .mr-auto {
   margin-right: auto;
 }
