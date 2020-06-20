@@ -23,7 +23,10 @@ class Home extends Component {
                             <Button intent={ Intent.NONE } className="" rightIcon={ "help" } large={ "small" } minimal={ "minimal" }>Forgot password?</Button>
                         </div>
                     </div>
-                    <img className="my-auto ml-5 mr-auto" style={ { maxHeight: "30rem" } }src={blog} alt="Logo" />
+                    <div className="d-flex-column ml-5 mr-auto">
+                        <img className="" style={ { maxHeight: "30rem" } } src={ blog } alt="Logo" />
+                        <div className="mx-auto mt-1">Icon made by <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                    </div>
                 </div>
             </div>
         );
