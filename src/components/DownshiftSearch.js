@@ -16,7 +16,7 @@ class DownshiftSearch extends Component {
     }
 
     fetchResults(query) {
-        const search = axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${query}`)
+        const search = axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro&explaintext&redirects=1&srsearch=${query}&origin=*`)
 
         if (query) {
             search.then(response => {

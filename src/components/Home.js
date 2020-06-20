@@ -16,7 +16,7 @@ class Home extends Component {
                         </span>
                         <h4 className="mx-auto bp3-heading" style={ { textAlign: "center" } }>Note what you need, not what you don't.</h4>
                         <div className="d-flex-column mx-auto" style={ { width: "50%" } }> 
-                            <Button intent={ Intent.SUCCESS } style={{ marginTop: "0.25rem"}} large={ "large" } minimal={ "minimal" }>CREATE ACCOUNT?</Button>
+                            <Button intent={ Intent.SUCCESS } style={{ marginTop: "0.25rem"}} large={ "large" } minimal={ "minimal" }>Create account?</Button>
                             <div className="mt-1">
                                 <LoginInput />
                             </div>
