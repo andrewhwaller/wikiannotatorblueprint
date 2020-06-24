@@ -162,6 +162,11 @@
   margin-bottom: auto;
 }
 
+.my-1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 .ql-container {
   overflow-y: auto;
 }

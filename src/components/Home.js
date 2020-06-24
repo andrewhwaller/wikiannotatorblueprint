@@ -1,10 +1,24 @@
 import React, { Component } from "react";
-import LoginInput from "./LoginInput"
-import { Button, Intent } from "@blueprintjs/core"
-// import cherrySearching from "../cherry-searching.png"
-import blog from "../blog.svg"
+import { connect } from "react-redux";
+import LoginInput from "./LoginInput";
+import RegistrationInput from "./RegistrationInput";
+import PasswordReset from "./PasswordReset";
+import blog from "../blog.svg";
 
 class Home extends Component {
+
+    renderAuthInput() {
+        var authInput;
+        if (this.props.authInput === "login") {
+            authInput = <LoginInput />;
+        } else if (this.props.authInput === "registration") {
+            authInput = <RegistrationInput />;
+        } else if (this.props.authInput === "password_reset") {
+            authInput = <PasswordReset />;
+        }
+        return authInput;
+    }
+
     render() {
         return (
             <div id="content" className="d-flex-column h-100">
@@ -16,11 +30,7 @@ class Home extends Component {
                         </span>
                         <h4 className="mx-auto bp3-heading" style={ { textAlign: "center" } }>Note what you need, not what you don't.</h4>
                         <div className="d-flex-column mx-auto" style={ { width: "50%" } }> 
-                            <Button intent={ Intent.SUCCESS } style={{ marginTop: "0.25rem"}} large={ "large" } minimal={ "minimal" }>Create account?</Button>
-                            <div className="mt-1">
-                                <LoginInput />
-                            </div>
-                            <Button intent={ Intent.NONE } className="" rightIcon={ "help" } large={ "small" } minimal={ "minimal" }>Forgot password?</Button>
+                            { this.renderAuthInput() }
                         </div>
                     </div>
                     <div className="d-flex-column ml-5 mr-auto">
@@ -33,4 +43,10 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        authInput: state.authInput
+    }
+}
+
+export default connect(mapStateToProps)(Home);

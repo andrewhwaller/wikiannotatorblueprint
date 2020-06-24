@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { Button, InputGroup, Intent, Tooltip } from "@blueprintjs/core";
 import { setAuthInput } from "../actions/authInput";
-import { Button, InputGroup, Intent, Tooltip } from "@blueprintjs/core"
 
-class LoginInput extends Component {
+class PasswordReset extends Component {
     constructor () {
         super();
         this.state = {
@@ -39,11 +39,11 @@ class LoginInput extends Component {
 
         return (
             <Fragment>
-                <Button onClick={ () => this.props.setAuthInput("registration") } intent={ Intent.SUCCESS } className="w-100" style={{ marginTop: "1rem", marginBottom: "1rem"}} large={ "large" } minimal={ "minimal" }>Create account?</Button>
+                <Button intent={ Intent.SECONDARY } className="mt-1 mb-1 w-100" icon={ "arrow-left" } large={ "large" } minimal={ "minimal" } onClick={ () => this.props.setAuthInput("login") }>Back to log in</Button>
                 <InputGroup leftIcon="user" large="true" name="username" className="mb-1" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
-                <InputGroup leftIcon="key" large="true" name="password" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
-                <Button intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" } onClick={this.handleSubmit}>Log In</Button>     
-                <Button onClick={ () => this.props.setAuthInput("password_reset") } intent={ Intent.NONE } className="mx-auto w-100" rightIcon={ "help" } large={ "small" } minimal={ "minimal" }>Forgot password?</Button>
+                <InputGroup leftIcon="key" large="true" name="password" className="mb-1" placeholder="Enter a new password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
+                <InputGroup leftIcon="confirm" large="true" name="passwordConfirmation" placeholder="Confirm password" type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
+                <Button intent={ Intent.NONE } className="mt-1 mb-1 w-100" rightIcon={ "reset" } large={ "large" } onClick={this.handleSubmit}>Reset Password</Button>     
             </Fragment>
         )
     }
@@ -62,4 +62,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginInput);
+export default connect(mapStateToProps, mapDispatchToProps)(PasswordReset);

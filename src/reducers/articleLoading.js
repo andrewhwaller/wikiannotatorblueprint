@@ -3,7 +3,7 @@ export default (state = false, action) => {
         case "SET_LOADING_TRUE":
             return action.loading;
         case "SET_LOADING_FALSE":
-                return action.loading;
+            return action.loading;
         default:
             return state;
     }
