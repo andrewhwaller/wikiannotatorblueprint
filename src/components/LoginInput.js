@@ -43,7 +43,7 @@ class LoginInput extends Component {
                 <InputGroup leftIcon="user" large="true" name="username" className="mb-1" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
                 <InputGroup leftIcon="key" large="true" name="password" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
                 <Button intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" } onClick={this.handleSubmit}>Log In</Button>     
-                <Button onClick={ () => this.props.setAuthInput("password_reset") } intent={ Intent.NONE } className="mx-auto w-100" rightIcon={ "help" } large={ "small" } minimal={ "minimal" }>Forgot password?</Button>
+                {/* <Button onClick={ () => this.props.setAuthInput("password_reset") } intent={ Intent.NONE } className="mx-auto w-100" rightIcon={ "help" } large={ "small" } minimal={ "minimal" }>Forgot password?</Button> */}
             </Fragment>
         )
     }

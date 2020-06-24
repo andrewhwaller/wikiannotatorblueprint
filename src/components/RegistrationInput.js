@@ -39,7 +39,7 @@ class RegistrationInput extends Component {
 
         return (
             <Fragment>
-                <Button intent={ Intent.SECONDARY } className="mt-1 mb-1 w-100" icon={ "arrow-left" } large={ "large" } minimal={ "minimal" } onClick={ () => this.props.setAuthInput("login") }>Back to log in</Button>
+                <Button intent={ Intent.SECONDARY } className="mt-1 mb-1 w-100" icon={ "arrow-left" } large={ "large" } minimal={ "minimal" } onClick={ () => this.props.setAuthInput("login") }>Back to Log In</Button>
                 <InputGroup leftIcon="user" large="true" name="username" className="mb-1" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
                 <InputGroup leftIcon="key" large="true" name="password" className="mb-1" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
                 <InputGroup leftIcon="confirm" large="true" name="passwordConfirmation" placeholder="Confirm password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
