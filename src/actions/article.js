@@ -46,4 +46,11 @@ export const setLoadingTrue = () => {
         type: "SET_LOADING_TRUE",
         loading: true
     }
-}
+};
+
+export const changeArticleText = value => {
+    return {
+        type: "CHANGE_ARTICLE_TEXT",
+        text: value
+    };
+};
