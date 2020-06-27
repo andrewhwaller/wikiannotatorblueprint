@@ -3,7 +3,7 @@ import ArticleEditor from "./ArticleEditor";
 import { Button, Spinner } from "@blueprintjs/core";
 import { connect } from "react-redux";
 import { clearDelta } from "../actions/unsavedDelta";
-import { beginSaveArticle, setDirtyFalse, setSavingFalse, setSavingTrue } from "../actions/article";
+import { beginSaveArticle, setDirtyFalse } from "../actions/article";
 
 class TextDisplay extends Component {
     constructor() {
@@ -12,7 +12,6 @@ class TextDisplay extends Component {
     }
 
     handleSaveClick = async () => {
-        await this.props.setSavingTrue();
         await this.props.beginSaveArticle(this.props.article);
         this.props.setDirtyFalse(false);
         this.props.clearDelta();
@@ -73,7 +72,6 @@ const mapDispatchToProps = dispatch => {
     return {
         beginSaveArticle: value => dispatch(beginSaveArticle(value)),
         setDirtyFalse: value => dispatch(setDirtyFalse(value)),
-        setSavingTrue: () => (dispatch(setSavingTrue())),
         clearDelta: value => dispatch(clearDelta())
     }
 }

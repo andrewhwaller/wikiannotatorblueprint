@@ -11,13 +11,12 @@ export const setArticle = article => {
 
 export const beginSaveArticle = (article) => {
     return dispatch => {
-        console.log("article to be saved: " + article.pageid);
+        dispatch(setSavingTrue());
         dispatch(saveArticleComplete());
     };
 };
 
 export const saveArticleComplete = () => {
-    console.log("save complete")
     return dispatch => {
         dispatch(setSavingFalse());
     }
@@ -74,11 +73,4 @@ export const setSavingTrue = () => {
         type: "SET_SAVING_TRUE",
         saving: true
     }
-};
-
-export const changeArticleText = value => {
-    return {
-        type: "CHANGE_ARTICLE_TEXT",
-        text: value
-    };
 };
