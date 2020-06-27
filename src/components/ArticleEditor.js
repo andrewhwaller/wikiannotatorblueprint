@@ -60,7 +60,7 @@ class ArticleEditor extends Component {
 
 const mapStateToProps = state => {
     return {
-		dirty: state.dirty,
+		articleDirty: state.articleDirty,
         article: state.article,
         unsavedDelta: state.unsavedDelta
     }

@@ -9,6 +9,20 @@ export const setArticle = article => {
     }
 }
 
+export const beginSaveArticle = (article) => {
+    return dispatch => {
+        console.log("article to be saved: " + article.pageid);
+        dispatch(saveArticleComplete());
+    };
+};
+
+export const saveArticleComplete = () => {
+    console.log("save complete")
+    return dispatch => {
+        dispatch(setSavingFalse());
+    }
+}
+
 export const getArticleFromSearch = article => {
     return dispatch => {
         dispatch({ type: "SET_LOADING_TRUE", loading: true })
@@ -45,6 +59,20 @@ export const setLoadingTrue = () => {
     return {
         type: "SET_LOADING_TRUE",
         loading: true
+    }
+};
+
+export const setSavingFalse = () => {
+    return {
+        type: "SET_SAVING_FALSE",
+        saving: false
+    }
+}
+
+export const setSavingTrue = () => {
+    return {
+        type: "SET_SAVING_TRUE",
+        saving: true
     }
 };
 

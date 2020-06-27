@@ -4,6 +4,7 @@ import { connectRouter } from "connected-react-router";
 import article from "./article";
 import articleDirty from "./articleDirty";
 import articleLoading from "./articleLoading";
+import articleSaving from "./articleSaving";
 import auth from "./auth";
 import authInput from "./authInput";
 import darkMode from "./darkMode";
@@ -14,6 +15,7 @@ const createRootReducer = (history) => combineReducers({
     article,
     articleDirty,
     articleLoading,
+    articleSaving,
     auth,
     authInput,
     darkMode,

@@ -14,7 +14,7 @@ import createRootReducer from "./reducers/rootReducer.js";
 // Blueprint.js components
 
 // custom components
-// import Login from "./Login";
+
 // actions
 
 // CSS
@@ -22,15 +22,6 @@ import "./index.scss";
 // 
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-// const reducers = combineReducers(
-//     {
-//         article,
-//         articleDirty,
-//         articleLoading,
-//         darkMode
-//     }
-// )
 
 const history = createBrowserHistory();
 
