@@ -1,11 +1,11 @@
-export default function alert(state = false, action) {
+export default function alert(state = "", action) {
     switch (action.type) {
         case "ALERT_SUCCESS":
             return {
                 type: "alert-success",
                 message: action.message,
             };
-        case "ALERT_ERROR":
+        case "ALERT_FAILURE":
             return {
                 type: "alert-danger",
                 message: action.message,

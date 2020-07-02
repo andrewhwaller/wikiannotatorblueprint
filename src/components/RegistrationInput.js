@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { setAuthInput } from "../actions/authInput";
+import { alertFailure } from "../actions/alert";
 import { Button, InputGroup, Intent, Tooltip } from "@blueprintjs/core"
+import { submitRegistrationRequest } from "../actions/registration";
 
 class RegistrationInput extends Component {
     constructor () {
@@ -20,7 +22,23 @@ class RegistrationInput extends Component {
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
+
     handleSubmit = () => {
+        if (this.state.password === this.state.password_confirmation) {
+            let credentials = {
+                email: this.state.email,
+                password: this.state.password,
+                password_confirmation: this.state.password_confirmation
+            };
+
+            this.props.submitRegistrationRequest(credentials);
+        } else {
+            let failure = {
+                message: "Registration failed. Passwords do not match. Please try again."
+            };
+            console.log(failure)
+            this.props.alertFailure(failure);
+        }
     };
 
     render() {
@@ -41,9 +59,9 @@ class RegistrationInput extends Component {
             <Fragment>
                 <Button intent={ Intent.SECONDARY } className="mt-1 mb-1 w-100" icon={ "arrow-left" } large={ "large" } minimal={ "minimal" } onClick={ () => this.props.setAuthInput("login") }>Back to Log In</Button>
                 <form>
-                    <InputGroup leftIcon="user" large="true" name="username" className="mb-1" autoComplete="off" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
+                    <InputGroup leftIcon="user" large="true" name="email" className="mb-1" autoComplete="off" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
                     <InputGroup leftIcon="key" large="true" name="password" className="mb-1" autoComplete="off" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
-                    <InputGroup leftIcon="confirm" large="true" name="passwordConfirmation" autoComplete="off" placeholder="Confirm password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
+                    <InputGroup leftIcon="confirm" large="true" name="password_confirmation" autoComplete="off" placeholder="Confirm password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
                     <Button intent={ Intent.SUCCESS } className="mt-1 mb-1 w-100" rightIcon={ "tick" } large={ "large" } onClick={this.handleSubmit}>Create Account</Button>     
                 </form>
             </Fragment>
@@ -60,7 +78,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setAuthInput: value => dispatch(setAuthInput(value))
+        setAuthInput: value => dispatch(setAuthInput(value)),
+        submitRegistrationRequest: credentials => dispatch(submitRegistrationRequest(credentials)),
+        alertFailure: failure => dispatch(alertFailure(failure))
     }
 }
 

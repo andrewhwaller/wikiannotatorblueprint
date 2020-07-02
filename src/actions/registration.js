@@ -1,17 +1,23 @@
+import * as Constants from "../constants"
+import { setAuthInput } from "./authInput";
+
 export const submitRegistrationRequest = credentials => {
+    console.log(credentials)
     return dispatch => {
-        return fetch("http://localhost:3000/api/v1/users", {
+        let status;
+        return fetch(Constants.BASE_URL + "/users", {
             method: "POST",
-            body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+            mode: "no-cors",
+            body: JSON.stringify({ email: credentials.email, password: credentials.password, password_confirmation: credentials.password_confirmation }),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-        .then((response) => {
+        .then(response => {
             status = response.status;
             return response.json();
         })
-        .then((json) => {
+        .then(json => {
             if (status === 201) {
                 dispatch(registrationSuccess())
             } else {
@@ -22,9 +28,12 @@ export const submitRegistrationRequest = credentials => {
 }
 
 export const registrationSuccess = () => {
-    return {
-        type: "ALERT_SUCCESS",
-        message: "You are now registered!"
+    return dispatch => {
+        dispatch(setAuthInput("login"))
+        return {
+            type: "ALERT_SUCCESS",
+            message: "You are now registered!"
+        }
     }
 }
 
