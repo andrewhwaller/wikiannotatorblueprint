@@ -6,7 +6,6 @@ export default (state = [], action) => {
         case "LOGIN_REQUEST":
             return {
                 authenticating: true,
-                user: action.user
             };
         case "LOGIN_SUCCESS":
             return {
@@ -14,7 +13,10 @@ export default (state = [], action) => {
                 user: action.user
             };
         case "LOGIN_FAILURE":
-            return {};
+            return {
+                authenticated: false,
+                user: action.user
+            };
         case "LOGOUT":
             return {};
         default:
