@@ -15,6 +15,6 @@ export const alertFailure = action => {
 export const clearAlert = () => {
     return {
         type: "CLEAR_ALERT",
-        message: {}
+        alert: ""
     }
 }

@@ -10,8 +10,8 @@ export default function alert(state = "", action) {
                 type: "alert-danger",
                 message: action.message,
             };
-        case "ALERT_CLEAR":
-            return false;
+        case "CLEAR_ALERT":
+            return "";
         default:
             return state;
     }

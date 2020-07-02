@@ -26,7 +26,9 @@ class Home extends Component {
             <div id="content" className="d-flex-column h-100">
                 <Alert 
                     isOpen={ this.props.alert } 
-                    onClose={ this.props.clearAlert() } 
+                    onClose={ () => { this.props.clearAlert() } }
+                    canEscapeKeyCancel={ true }
+                    canOutsideClickCancel={ true }
                     icon={ this.props.alert.type === "alert-danger" ? "warning-sign" : this.props.alert.type === "alert-success" ? "tick-circle" : "issue" }
                     intent={this.props.alert.type === "alert-danger" ? Intent.DANGER : this.props.alert.type === "alert-success" ? Intent.SUCCESS : Intent.PRIMARY }
                 >
