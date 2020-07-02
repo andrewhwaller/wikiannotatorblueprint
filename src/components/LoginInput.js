@@ -51,7 +51,6 @@ class LoginInput extends Component {
 
 const mapStateToProps = state => {
     return {
-        authenticating: state.authenticating,
         authenticated: state.authenticated
     }
 }

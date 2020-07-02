@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import Cookies from "js-cookie";
 
 // Blueprint.js components
 
@@ -18,8 +19,16 @@ import TextDisplay from "./components/TextDisplay";
 // Actions
 import { setArticle, getArticleFromSearch, setLoadingTrue, setLoadingFalse } from "./actions/article";
 import { changeMode } from "./actions/darkMode";
+import { setToken } from "./actions/authentication";
 
 class App extends Component {
+
+    componentDidMount() {
+        console.log("app has started")
+        if (Cookies.get("auth_token")) {
+            this.props.setToken(Cookies.get("auth_token"))
+        }
+    }
 
     render() {
         document.body.className = this.props.darkMode ? "bp3-dark" : "";
@@ -45,7 +54,9 @@ const mapStateToProps = state => {
     return ({
         article: state.article,
         articleLoading: state.articleLoading,
-        darkMode: state.darkMode
+        authenticated: state.authenticated,
+        darkMode: state.darkMode,
+        token: state.token
     })
 }
 
@@ -55,5 +66,6 @@ export default connect(mapStateToProps,
                             getArticleFromSearch, 
                             setLoadingTrue, 
                             setLoadingFalse, 
-                            changeMode 
+                            changeMode,
+                            setToken
                         })(App);

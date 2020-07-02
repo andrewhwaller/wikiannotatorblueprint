@@ -1,4 +1,4 @@
-export default function alert(state = {}, action) {
+export default function alert(state = false, action) {
     switch (action.type) {
         case "ALERT_SUCCESS":
             return {
@@ -11,7 +11,7 @@ export default function alert(state = {}, action) {
                 message: action.message,
             };
         case "ALERT_CLEAR":
-            return {};
+            return false;
         default:
             return state;
     }
