@@ -24,7 +24,6 @@ import { setToken } from "./actions/authentication";
 class App extends Component {
 
     componentDidMount() {
-        console.log("app has started")
         if (Cookies.get("auth_token")) {
             this.props.setToken(Cookies.get("auth_token"))
         }

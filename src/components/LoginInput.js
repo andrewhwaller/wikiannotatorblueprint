@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { setAuthInput } from "../actions/authInput";
 import { Button, InputGroup, Intent, Tooltip } from "@blueprintjs/core"
+import { submitLoginRequest } from "../actions/authentication";
 
 class LoginInput extends Component {
     constructor () {
@@ -9,7 +10,7 @@ class LoginInput extends Component {
         this.state = {
             disabled: false,
             showPassword: false,
-            username: "",
+            email: "",
             password: "",
             formValidity: "invalid"
         };
@@ -21,6 +22,12 @@ class LoginInput extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
     handleSubmit = () => {
+        let credentials = {
+            email: this.state.email,
+            password: this.state.password
+        };
+
+        this.props.submitLoginRequest(credentials);
     };
 
     render() {
@@ -40,10 +47,11 @@ class LoginInput extends Component {
         return (
             <Fragment>
                 <Button onClick={ () => this.props.setAuthInput("registration") } intent={ Intent.SUCCESS } className="w-100" style={{ marginTop: "1rem", marginBottom: "1rem"}} large={ "large" } minimal={ "minimal" }>Create account?</Button>
-                <InputGroup leftIcon="user" large="true" name="username" className="mb-1" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
-                <InputGroup leftIcon="key" large="true" name="password" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
-                <Button intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" } onClick={this.handleSubmit}>Log In</Button>     
-                {/* <Button onClick={ () => this.props.setAuthInput("password_reset") } intent={ Intent.NONE } className="mx-auto w-100" rightIcon={ "help" } large={ "small" } minimal={ "minimal" }>Forgot password?</Button> */}
+                <form>
+                    <InputGroup leftIcon="user" large="true" name="email" className="mb-1" autoComplete="off" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
+                    <InputGroup leftIcon="key" large="true" name="password" autoComplete="off" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
+                    <Button intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" } onClick={ this.handleSubmit }>Log In</Button>     
+                </form>
             </Fragment>
         )
     }
@@ -57,7 +65,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setAuthInput: value => dispatch(setAuthInput(value))
+        setAuthInput: value => dispatch(setAuthInput(value)),
+        submitLoginRequest: credentials => dispatch(submitLoginRequest(credentials))
     }
 }
 

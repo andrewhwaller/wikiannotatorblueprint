@@ -9,6 +9,7 @@ import articleSaving from "./articleSaving";
 import authenticated from "./authenticated";
 import authInput from "./authInput";
 import darkMode from "./darkMode";
+import token from "./token";
 import unsavedDelta from "./unsavedDelta";
 import user from "./user";
 
@@ -22,6 +23,7 @@ const createRootReducer = (history) => combineReducers({
     authenticated,
     authInput,
     darkMode,
+    token,
     unsavedDelta,
     user
 })

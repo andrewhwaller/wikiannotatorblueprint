@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { alertFailure } from "./alert";
 
 export const submitLoginRequest = credentials => {
     return dispatch => {
@@ -34,9 +35,15 @@ export const loginSuccess = user => {
 }
 
 export const loginFailure = () => {
-    return {
-        type: "LOGIN_FAILURE",
-        user: {}
+    let failure = {
+        message: "Log in failed. Please check your credentials and try again."
+    }
+    return dispatch => {
+        dispatch(alertFailure(failure))
+        return {
+            type: "LOGIN_FAILURE",
+            user: {}
+        }
     }
 }
 
