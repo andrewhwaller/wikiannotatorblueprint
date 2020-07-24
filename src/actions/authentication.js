@@ -3,16 +3,17 @@ import { alertFailure } from "./alert";
 import * as Constants from "../constants"
 
 export const submitLoginRequest = credentials => {
+    console.log(credentials)
     return dispatch => {
         let status;
+        let headers = new Headers();
+        headers.set("Content-type", "application/json");
         return fetch(Constants.BASE_URL + "/users/login", {
             method: "POST",
-            mode: "no-cors",
             body: JSON.stringify({ email: credentials.email, password: credentials.password }),
-            headers: {
-                "Content-Type": "application/json"
-            }
+            headers: headers
         })
+        .then(handleErrors)
         .then(response => {
             status = response.status;
             return response.json();
@@ -62,4 +63,11 @@ export const setToken = token => {
         type: "SET_TOKEN",
         token: token
     }
+};
+
+let handleErrors = function (response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
 }

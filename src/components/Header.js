@@ -17,6 +17,16 @@ FocusStyleManager.onlyShowFocusOnTabs();
 
 class Header extends Component {
     render() {
+        let searchTab;
+        if (this.props.authenticated) {
+            searchTab = <NavLink
+                to="/search"
+                className="bp3-button bp3-minimal bp3-icon-search header-button"
+                activeClassName="bp3-active"
+            >
+                Search
+            </NavLink>
+        }
         return (
             <Navbar>
                 <Navbar.Group align={Alignment.LEFT}>
@@ -35,13 +45,7 @@ class Header extends Component {
                     >
                         Home
                     </NavLink>
-                    <NavLink
-                        to="/search"
-                        className="bp3-button bp3-minimal bp3-icon-search header-button"
-                        activeClassName="bp3-active"
-                    >
-                        Search
-                    </NavLink>
+                    { searchTab }
                     { this.props.article.length !== 0 && 
                         <NavLink
                             to="/article"
@@ -76,6 +80,7 @@ class Header extends Component {
 const mapStateToProps = state => {
     return {
         article: state.article,
+        authenticated: state.authenticated
     }
 }
 

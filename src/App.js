@@ -19,13 +19,14 @@ import TextDisplay from "./components/TextDisplay";
 // Actions
 import { setArticle, getArticleFromSearch, setLoadingTrue, setLoadingFalse } from "./actions/article";
 import { changeMode } from "./actions/darkMode";
-import { setToken } from "./actions/authentication";
+import { setToken, loginSuccess } from "./actions/authentication";
 
 class App extends Component {
 
     componentDidMount() {
         if (Cookies.get("auth_token")) {
             this.props.setToken(Cookies.get("auth_token"))
+            this.props.loginSuccess()
         }
     }
 
@@ -40,7 +41,7 @@ class App extends Component {
                     >
                         <Header changeMode={ this.props.changeMode } />
                         <Route component={ Home } exact path="/" />
-                        <Route component={ Search } exact path="/search" />
+                        <Route path="/search" component={ Search } />
                         <Route component={ TextDisplay } exact path="/article" />
                     </div>
                 </Route>
@@ -66,5 +67,6 @@ export default connect(mapStateToProps,
                             setLoadingTrue, 
                             setLoadingFalse, 
                             changeMode,
-                            setToken
+                            setToken,
+                            loginSuccess
                         })(App);

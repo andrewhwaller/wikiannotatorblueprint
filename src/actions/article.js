@@ -12,7 +12,6 @@ export const setArticle = article => {
 export const beginSaveArticle = (article) => {
     return dispatch => {
         dispatch(setSavingTrue());
-        dispatch(saveArticleComplete());
     };
 };
 

@@ -39,8 +39,6 @@ ReactDOM.render(
     <Provider store={ store }>
         <ConnectedRouter history={ history }>
             <App />
-            {/* <Route path="/login" component={ Login } />
-            <Route path="/app" component={ App } /> */}
         </ConnectedRouter>
     </Provider>,
     document.getElementById("root")
