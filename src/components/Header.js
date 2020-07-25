@@ -18,6 +18,9 @@ FocusStyleManager.onlyShowFocusOnTabs();
 class Header extends Component {
     render() {
         let searchTab;
+        let articlesTab;
+        let userMenu;
+
         if (this.props.authenticated) {
             searchTab = <NavLink
                 to="/search"
@@ -25,7 +28,27 @@ class Header extends Component {
                 activeClassName="bp3-active"
             >
                 Search
-            </NavLink>
+            </NavLink>;
+
+            articlesTab = <NavLink
+                to="/articles"
+                className="bp3-button bp3-minimal bp3-icon-list header-button"
+                activeClassName="bp3-active"
+            >
+                Saved articles
+            </NavLink>;
+
+            userMenu = <Popover className="bp3-align-right"content={
+                    <Menu>
+                        <MenuItem icon="user" text="Profile" />
+                        <MenuItem icon="document" text="Digests" />
+                        <MenuItem icon="cog" text="Settings" />
+                    </Menu>
+                }
+                position={Position.LEFT_BOTTOM}
+            >
+                <Button className="bp3-minimal" text="Menu" />
+            </Popover>
         }
         return (
             <Navbar>
@@ -46,30 +69,19 @@ class Header extends Component {
                         Home
                     </NavLink>
                     { searchTab }
+                    { articlesTab }
                     { this.props.article.length !== 0 && 
                         <NavLink
                             to="/article"
-                            className="bp3-button bp3-minimal bp3-icon-document header-button"
+                            className="bp3-button bp3-minimal bp3-icon-edit header-button"
                             activeClassName="bp3-active"
                         >
-                            Article
+                            Edit article
                         </NavLink>
                     }
                 </Navbar.Group>
-                <Navbar.Group align={Alignment.RIGHT}>
-                    <Popover
-                        className="bp3-align-right"
-                        content={
-                            <Menu>
-                                <MenuItem icon="user" text="Profile" />
-                                <MenuItem icon="document" text="Digests" />
-                                <MenuItem icon="cog" text="Settings" />
-                            </Menu>
-                        }
-                        position={Position.LEFT_BOTTOM}
-                    >
-                        <Button className="bp3-minimal" text="Menu" />
-                    </Popover>
+                <Navbar.Group align={ Alignment.RIGHT }>
+                    { userMenu }
                     <DarkModeSwitch changeMode={this.props.changeMode} />
                 </Navbar.Group>
             </Navbar>

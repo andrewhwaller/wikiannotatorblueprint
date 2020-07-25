@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Alert, Intent } from "@blueprintjs/core";
+import { Link } from "react-router-dom";
+import { Alert, Intent, Button } from "@blueprintjs/core";
 import { clearAlert } from "../actions/alert";
 import LoginInput from "./LoginInput";
 import RegistrationInput from "./RegistrationInput";
@@ -8,6 +9,35 @@ import PasswordReset from "./PasswordReset";
 import blog from "../blog.svg";
 
 class Home extends Component {
+
+    renderHomeView() {
+        if (this.props.authenticated) {
+            return <div className="mt-5">
+                <div className="d-flex-column">
+                    <Link to="/search">
+                        <Button
+                            icon={"search"}
+                            intent={ Intent.SUCCESS }
+                            text={ "Find a new article" }
+                            large={ true }
+                            className={ "w-100 mb-1" }
+                        />
+                    </Link>
+                    <Link to="/articles">
+                        <Button
+                            icon={"list"}
+                            intent={ Intent.PRIMARY }
+                            text={ "View saved articles" }
+                            large={ true }
+                            className={ "w-100 mb-1" }
+                        />
+                    </Link>
+                </div>
+            </div>
+        } else if (!this.props.authenticated) {
+            return this.renderAuthInput();
+        };
+    }
 
     renderAuthInput() {
         var authInput;
@@ -42,7 +72,7 @@ class Home extends Component {
                         </span>
                         <h4 className="mx-auto bp3-heading" style={ { textAlign: "center" } }>Note what you need, not what you don't.</h4>
                         <div className="d-flex-column mx-auto" style={ { width: "50%" } }> 
-                            { this.renderAuthInput() }
+                            { this.renderHomeView() }
                         </div>
                     </div>
                     <div className="d-flex-column ml-5 mr-auto">
@@ -58,7 +88,8 @@ class Home extends Component {
 const mapStateToProps = state => {
     return {
         alert: state.alert,
-        authInput: state.authInput
+        authInput: state.authInput,
+        authenticated: state.authenticated
     }
 }
 
