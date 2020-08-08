@@ -28,7 +28,7 @@ class Header extends Component {
         let searchTab;
         let articlesTab;
         let logOutButton;
-        let urlSlug;
+        let url;
 
         if (this.props.authenticated) {
             searchTab = <NavLink
@@ -58,9 +58,9 @@ class Header extends Component {
         }
 
         if (this.props.article.id) {
-            urlSlug = "/articles/" + this.props.article.id + "/edit"
+            url = "/articles/" + this.props.article.id + "/edit"
         } else if (!this.props.article.id) {
-            urlSlug = "/article/new"
+            url = "/article/new"
         }
         
         return (
@@ -83,9 +83,9 @@ class Header extends Component {
                     </NavLink>
                     { searchTab }
                     { articlesTab }
-                    { this.props.article.length !== 0 && 
+                    { this.props.article.length !== 0 && this.props.authenticated &&
                         <NavLink
-                        to={ urlSlug }
+                        to={ url }
                             className="bp3-button bp3-minimal bp3-icon-edit header-button"
                             activeClassName="bp3-active"
                         >

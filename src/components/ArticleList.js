@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Alert, Button, Card, Elevation, Intent, Spinner } from "@blueprintjs/core";
+import { Alert, Intent, Spinner } from "@blueprintjs/core";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import Article from "./Article"
 import { getAllArticles } from "../actions/articles";
+import { clearAlert } from "../actions/alert";
 import { setArticle, deleteArticle } from "../actions/article";
 
 class ArticleList extends Component {
@@ -12,11 +13,12 @@ class ArticleList extends Component {
     }
 
     handleEditClick(article) {
-        this.props.setArticle(article)
+        this.props.setArticle(article);
     }
 
     async handleDeleteClick(article) {
-        await this.props.deleteArticle(article)
+        await this.props.deleteArticle(article);
+        await this.props.setArticle([]);
         this.props.getAllArticles();
     }
 
@@ -47,25 +49,7 @@ class ArticleList extends Component {
                         <div className={ "d-flex-column flex-grow-1 px-5 mt-1 pb-1" } style={ { overflow: "auto" } }>
                             <div className="article-grid">
                                 { this.props.articles.map(article => (
-                                    <div key={ article.id }>
-                                        <Card interactive={ false } elevation={ Elevation.TWO } className={ "m-0-5" } >
-                                            <div className="d-flex-row">
-                                                <div className="d-flex-column">
-                                                    <h3 style={ { marginTop: "0", marginBottom: "0" } }>{ article.title }</h3>
-                                                    <div className="d-flex-column my-1">
-                                                        <span><strong>Created: </strong><span>{ article.created_at.split('T')[0] }</span></span>
-                                                        <span><strong>Last updated: </strong><span>{ article.updated_at.split('T')[0] }</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="d-flex-row">
-                                                <Link to={ "/articles/" + article.id + "/edit" } onClick={ () => { this.handleEditClick(article); } }>
-                                                    <Button intent={ Intent.PRIMARY } icon={ "edit" } >Edit</Button>
-                                                </Link>
-                                                <Button className="ml-auto" intent={ Intent.DANGER } icon={ "trash" } onClick={ () => { this.handleDeleteClick(article) } }>Delete</Button>
-                                            </div>
-                                        </Card>
-                                    </div>
+                                    <Article article={ article } key={ article.id }></Article>
                                 )) }
                             </div>
                         </div> 
@@ -80,7 +64,7 @@ const mapStateToProps = state => {
     return {
         alert: state.alert,
         articles: state.articles,
-        articleLoading: state.articleLoading,
+        articleLoading: state.articleLoading
     }
 }
 
@@ -88,7 +72,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getAllArticles: () => dispatch(getAllArticles()),
         setArticle: article => dispatch(setArticle(article)),
-        deleteArticle: article => dispatch(deleteArticle(article))
+        deleteArticle: article => dispatch(deleteArticle(article)),
+        clearAlert: () => dispatch(clearAlert())
     }
 }
 

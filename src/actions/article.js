@@ -14,9 +14,8 @@ export const setArticle = article => {
     }
 }
 
-export const deleteArticle = article => {
-    return dispatch => {
-        let status;
+export const deleteArticle = (article) => {
+    return (dispatch) => {
         let route;
         let method;
         let headers = new Headers();
@@ -35,16 +34,14 @@ export const deleteArticle = article => {
             headers: headers
         })
             .then(response => {
-                status = response.status;
-                return response.json();
-            })
-            .then((json) => {
-                if (status === 204 ) {
+                if (response.status === 204) {
                     dispatch(getAllArticles());
+                } else {
+                    dispatch(deleteFailure());
                 }
             })
             .catch((error) => {
-                dispatch(deleteFailure());
+                console.error(error);
         })
     }
 }
@@ -112,6 +109,7 @@ export const deleteFailure = () => {
     let failure = {
         message: "Delete failed. Please try again."
     };
+
     return dispatch => {
         dispatch(alertFailure(failure));
         return {
@@ -159,6 +157,8 @@ export const getArticle = article => {
             })
             .then((json) => {
                 if (status === 200 || status === 201) {
+                    json.data.attributes.created_at = json.data.attributes.created_at.split('T')[0]
+                    json.data.attributes.updated_at = json.data.attributes.updated_at.split('T')[0]
                     dispatch(setArticle(json.data.attributes))
                 }
             })

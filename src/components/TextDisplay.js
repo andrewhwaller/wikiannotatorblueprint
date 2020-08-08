@@ -3,21 +3,13 @@ import ArticleEditor from "./ArticleEditor";
 import { Alert, Button, Intent, Spinner } from "@blueprintjs/core";
 import { connect } from "react-redux";
 import { clearDelta } from "../actions/unsavedDelta";
+import { clearAlert } from "../actions/alert";
 import { beginSaveArticle, setDirtyFalse } from "../actions/article";
 
 class TextDisplay extends Component {
     constructor() {
         super();
         this.handleSaveClick = this.handleSaveClick.bind(this);
-    }
-
-    componentDidMount() {
-        // let articleId = this.props.article.id;
-        // if (!articleId) {
-        //     this.props.history.replace('/article/new')
-        // } else if (articleId) {
-        //     this.props.history.replace('/articles/edit/' + articleId)
-        // }
     }
 
     handleSaveClick = async () => {
@@ -27,13 +19,14 @@ class TextDisplay extends Component {
     }
 
     renderSpinnerMessage() {
-        var spinnerMessage;
+        let spinnerMessage;
+
         if (this.props.articleLoading) {
             spinnerMessage = "Article loading...";
         } else if (this.props.articleSaving) {
             spinnerMessage = "Article saving...";
         }
-        console.log(spinnerMessage)
+
         return spinnerMessage;
     }
 
@@ -92,7 +85,8 @@ const mapDispatchToProps = dispatch => {
     return {
         beginSaveArticle: value => dispatch(beginSaveArticle(value)),
         setDirtyFalse: value => dispatch(setDirtyFalse(value)),
-        clearDelta: value => dispatch(clearDelta())
+        clearDelta: value => dispatch(clearDelta()),
+        clearAlert: () => dispatch(clearAlert())
     }
 }
 
