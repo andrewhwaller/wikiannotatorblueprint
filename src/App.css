@@ -167,6 +167,19 @@
     margin-bottom: 1rem;
 }
 
+.m-0-5 {
+    margin: 0.5rem;
+}
+
+.px-5 {
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.pb-1 {
+    padding-bottom: 1rem;
+}
+
 .ql-container {
   overflow-y: auto;
 }
@@ -181,4 +194,9 @@
   flex-direction: column;
 }
 
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
 

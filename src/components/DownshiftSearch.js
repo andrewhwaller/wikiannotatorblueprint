@@ -71,7 +71,7 @@ class DownshiftSearch extends Component {
                                         }) }
                                         key={item.pageid + Math.random().toString()}
                                     >
-                                <NavLink to="/article" onClick={() => { this.props.getArticleFromSearch(item)} }>
+                                <NavLink to="/article/new" onClick={() => { this.props.getArticleFromSearch(item)} }>
                                     <span className="bp3-text-large">{item.title}</span>
                                     <span
                                         className="bp3-text-small bp3-text-muted bp3-text-overflow-ellipsis result-snippet"

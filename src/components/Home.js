@@ -11,6 +11,7 @@ import blog from "../blog.svg";
 class Home extends Component {
 
     renderHomeView() {
+        console.log("re-rendering home view")
         if (this.props.authenticated) {
             return <div className="mt-5">
                 <div className="d-flex-column">

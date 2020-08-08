@@ -24,7 +24,7 @@ class RegistrationInput extends Component {
     }
 
     handleSubmit = () => {
-        if (this.state.password === this.state.password_confirmation && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
+        if (this.state.password === this.state.password_confirmation && /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
             let credentials = {
                 email: this.state.email,
                 password: this.state.password,
@@ -38,7 +38,7 @@ class RegistrationInput extends Component {
                 failure = {
                     message: "Registration failed. Passwords do not match. Please try again."
                 };
-            } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
+            } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
                 failure = {
                     message: "Registration failed. You entered an invalid email address. Please try again."
                 };

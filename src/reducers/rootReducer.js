@@ -3,6 +3,7 @@ import { connectRouter } from "connected-react-router";
 
 import alert from "./alert";
 import article from "./article";
+import articles from "./articles";
 import articleDirty from "./articleDirty";
 import articleLoading from "./articleLoading";
 import articleSaving from "./articleSaving";
@@ -17,6 +18,7 @@ const createRootReducer = (history) => combineReducers({
     router: connectRouter(history),
     alert,
     article,
+    articles,
     articleDirty,
     articleLoading,
     articleSaving,

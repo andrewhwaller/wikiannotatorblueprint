@@ -25,7 +25,6 @@ class DarkModeSwitch extends Switch {
                 <Icon 
                     icon={this.props.darkMode ? `flash` : `moon`} 
                     iconSize={15} 
-                    // style={this.props.darkMode ? {} : {color: Colors.GOLD5}}
                 />
                 <Switch
                     style={{marginLeft: "0.5rem"}}

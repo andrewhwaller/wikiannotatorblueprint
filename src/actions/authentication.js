@@ -1,9 +1,8 @@
 import Cookies from "js-cookie";
 import { alertFailure } from "./alert";
-import * as Constants from "../constants"
+import * as Constants from "../constants";
 
 export const submitLoginRequest = credentials => {
-    console.log(credentials)
     return dispatch => {
         let status;
         let headers = new Headers();
@@ -13,50 +12,56 @@ export const submitLoginRequest = credentials => {
             body: JSON.stringify({ email: credentials.email, password: credentials.password }),
             headers: headers
         })
-        .then(handleErrors)
-        .then(response => {
-            status = response.status;
-            return response.json();
-        })
-        .then(json => {
-            Cookies.set("auth_token", json.auth_token, { expires: 2 });
-            if (status === 200 && Cookies.get("auth_token")) {
-                dispatch(setToken(json.auth_token))
-                dispatch(loginSuccess(json))
-            } else if (status === 500 && Cookies.get("auth_token")) {
-                dispatch(loginFailure())
-            }
-        })
-    }
-}
+            .then(response => {
+                status = response.status;
+                return response.json();
+            })
+            .then(json => {
+                Cookies.set("auth_token", json.auth_token, { expires: 2 });
+                if (status === 200 && Cookies.get("auth_token")) {
+                    dispatch(setToken(json.auth_token));
+                    dispatch(loginSuccess());
+                } else {
+                    dispatch(loginFailure());
+                };
+            });
+    };
+};
 
-export const loginSuccess = user => {
+export const loginSuccess = () => {
     return {
         type: "LOGIN_SUCCESS",
-        user: user
-    }
-}
+        authenticated: true
+    };
+};
 
 export const loginFailure = () => {
     let failure = {
         message: "Log in failed. Please check your credentials and try again."
-    }
+    };
     return dispatch => {
-        dispatch(alertFailure(failure))
+        dispatch(alertFailure(failure));
         return {
             type: "LOGIN_FAILURE",
             user: {}
-        }
-    }
-}
+        };
+    };
+};
 
 export const logoutUser = () => {
-    Cookies.remove('auth_token');
+    Cookies.remove("auth_token");
+    return dispatch => {
+        dispatch(setToken([]));
+        dispatch(revokeAuthentication());
+    };
+};
+
+export const revokeAuthentication = () => {
     return {
         type: "LOGOUT_USER",
         authenticated: false
-    }
-}
+    };
+};
 
 export const setToken = token => {
     return {
@@ -64,10 +69,3 @@ export const setToken = token => {
         token: token
     }
 };
-
-let handleErrors = function (response) {
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response;
-}

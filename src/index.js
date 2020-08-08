@@ -3,8 +3,8 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import React from "react";
 import ReactDOM from "react-dom";
-// import { BrowserRouter as Router, Route } from "react-router-dom";
-import { routerMiddleware, ConnectedRouter } from "connected-react-router";
+import { BrowserRouter } from "react-router-dom";
+// import { routerMiddleware, ConnectedRouter } from "connected-react-router";
 // import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect"
 import { createBrowserHistory } from "history";
 import { Provider } from "react-redux";
@@ -29,17 +29,17 @@ const store = createStore(
     createRootReducer(history),
     composeEnhancer(
         applyMiddleware(
-            thunk,
-            routerMiddleware(history)
+            thunk
+            // routerMiddleware(history)
         )
     )
 )
 
 ReactDOM.render(
     <Provider store={ store }>
-        <ConnectedRouter history={ history }>
+        <BrowserRouter history={ history }>
             <App />
-        </ConnectedRouter>
+        </BrowserRouter>
     </Provider>,
     document.getElementById("root")
 );

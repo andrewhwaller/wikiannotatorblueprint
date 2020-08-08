@@ -15,6 +15,7 @@ import Header from "./components/Header";
 import Search from "./components/Search";
 import Home from "./components/Home";
 import TextDisplay from "./components/TextDisplay";
+import ArticleList from "./components/ArticleList";
 
 // Actions
 import { setArticle, getArticleFromSearch, setLoadingTrue, setLoadingFalse } from "./actions/article";
@@ -30,22 +31,28 @@ class App extends Component {
         }
     }
 
+    renderEdit(props) {
+        console.log(props)
+    }
+
+    renderShirts = (routerProps) => {
+        console.log(routerProps)
+    }
+
     render() {
         document.body.className = this.props.darkMode ? "bp3-dark" : "";
 
         return (
-            <Switch>
-                <Route>
-                    <div
-                        className={this.props.darkMode ? `light-bg` : `dark-bg`}
-                    >
-                        <Header changeMode={ this.props.changeMode } />
-                        <Route component={ Home } exact path="/" />
-                        <Route path="/search" component={ Search } />
-                        <Route component={ TextDisplay } exact path="/article" />
-                    </div>
-                </Route>
-            </Switch>
+            <div className={this.props.darkMode ? `light-bg` : `dark-bg`}>
+                <Header changeMode={ this.props.changeMode } />
+                <Switch>
+                    <Route component={ Home } exact path="/" />
+                    <Route path="/search" component={ Search } />
+                    <Route exact path="/articles" component={ ArticleList } />
+                    <Route component={ TextDisplay } path="/articles/:id/edit" />
+                    <Route component={ TextDisplay } path="/article/new" />
+                </Switch>
+            </div>
         );
     };
 }

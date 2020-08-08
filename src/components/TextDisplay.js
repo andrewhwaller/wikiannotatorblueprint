@@ -11,6 +11,15 @@ class TextDisplay extends Component {
         this.handleSaveClick = this.handleSaveClick.bind(this);
     }
 
+    componentDidMount() {
+        // let articleId = this.props.article.id;
+        // if (!articleId) {
+        //     this.props.history.replace('/article/new')
+        // } else if (articleId) {
+        //     this.props.history.replace('/articles/edit/' + articleId)
+        // }
+    }
+
     handleSaveClick = async () => {
         await this.props.beginSaveArticle(this.props.article);
         this.props.setDirtyFalse(false);

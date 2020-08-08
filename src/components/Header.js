@@ -1,25 +1,34 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import {
     Alignment,
-    Button,
     FocusStyleManager,
-    Menu,
-    MenuItem,
     Navbar,
-    Popover,
-    Position
 } from "@blueprintjs/core";
 import DarkModeSwitch from "./DarkModeSwitch";
+import { logoutUser } from "../actions/authentication";
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
 class Header extends Component {
+    constructor () {
+        super();
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+        
+    handleLogout = async function() {
+        await this.props.logoutUser();
+        await this.props.history.push("/logout")
+        this.props.history.push("/")
+    };
+
     render() {
         let searchTab;
         let articlesTab;
-        let userMenu;
+        let logOutButton;
+        let urlSlug;
 
         if (this.props.authenticated) {
             searchTab = <NavLink
@@ -31,6 +40,7 @@ class Header extends Component {
             </NavLink>;
 
             articlesTab = <NavLink
+                exact
                 to="/articles"
                 className="bp3-button bp3-minimal bp3-icon-list header-button"
                 activeClassName="bp3-active"
@@ -38,18 +48,21 @@ class Header extends Component {
                 Saved articles
             </NavLink>;
 
-            userMenu = <Popover className="bp3-align-right"content={
-                    <Menu>
-                        <MenuItem icon="user" text="Profile" />
-                        <MenuItem icon="document" text="Digests" />
-                        <MenuItem icon="cog" text="Settings" />
-                    </Menu>
-                }
-                position={Position.LEFT_BOTTOM}
+            logOutButton =  <Link
+                to="/"
+                className="bp3-button bp3-minimal bp3-icon-log-out header-button"
+                onClick={ this.handleLogout }
             >
-                <Button className="bp3-minimal" text="Menu" />
-            </Popover>
+                Log out
+            </Link>
         }
+
+        if (this.props.article.id) {
+            urlSlug = "/articles/" + this.props.article.id + "/edit"
+        } else if (!this.props.article.id) {
+            urlSlug = "/article/new"
+        }
+        
         return (
             <Navbar>
                 <Navbar.Group align={Alignment.LEFT}>
@@ -72,7 +85,7 @@ class Header extends Component {
                     { articlesTab }
                     { this.props.article.length !== 0 && 
                         <NavLink
-                            to="/article"
+                        to={ urlSlug }
                             className="bp3-button bp3-minimal bp3-icon-edit header-button"
                             activeClassName="bp3-active"
                         >
@@ -81,7 +94,7 @@ class Header extends Component {
                     }
                 </Navbar.Group>
                 <Navbar.Group align={ Alignment.RIGHT }>
-                    { userMenu }
+                    { logOutButton }
                     <DarkModeSwitch changeMode={this.props.changeMode} />
                 </Navbar.Group>
             </Navbar>
@@ -96,4 +109,13 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => {
+    return {
+        logoutUser: () => dispatch(logoutUser()),
+    }
+}
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Header);
