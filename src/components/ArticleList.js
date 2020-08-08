@@ -49,7 +49,7 @@ class ArticleList extends Component {
                         <div className={ "d-flex-column flex-grow-1 px-5 mt-1 pb-1" } style={ { overflow: "auto" } }>
                             <div className="article-grid">
                                 { this.props.articles.map(article => (
-                                    <Article article={ article } key={ article.id }></Article>
+                                    <Article mappedArticle={ article } key={ article.id }></Article>
                                 )) }
                             </div>
                         </div> 

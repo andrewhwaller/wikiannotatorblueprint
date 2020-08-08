@@ -25,24 +25,24 @@ class Article extends Component {
             <Card interactive={ false } elevation={ Elevation.TWO } className={ "m-0-5" } >
                 <div className="d-flex-row">
                     <div className="d-flex-column">
-                        <h3 style={ { marginTop: "0", marginBottom: "0" } }>{ this.props.article.title }</h3>
+                        <h3 style={ { marginTop: "0", marginBottom: "0" } }>{ this.props.mappedArticle.title }</h3>
                         <div className="d-flex-column my-1">
                             <span>
                                 <strong>Created: </strong>
-                                <span>{ this.props.article.created_at }</span>
+                                <span>{ this.props.mappedArticle.created_at.split('T')[0] }</span>
                             </span>
                             <span>
                                 <strong>Last updated: </strong>
-                                <span>{ this.props.article.updated_at }</span>
+                                <span>{ this.props.mappedArticle.updated_at.split('T')[0] }</span>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div className="d-flex-row">
-                    <Link to={ "/articles/" + this.props.article.id + "/edit" } onClick={ () => { this.handleEditClick(this.props.article); } }>
+                    <Link to={ "/articles/" + this.props.mappedArticle.id + "/edit" } onClick={ () => { this.handleEditClick(this.props.mappedArticle); } }>
                         <Button intent={ Intent.PRIMARY } icon={ "edit" } >Edit</Button>
                     </Link>
-                    <Button className="ml-auto" intent={ Intent.DANGER } icon={ "trash" } onClick={ () => { this.handleDeleteClick(this.props.article) } }>Delete</Button>
+                    <Button className="ml-auto" intent={ Intent.DANGER } icon={ "trash" } onClick={ () => { this.handleDeleteClick(this.props.mappedArticle) } }>Delete</Button>
                 </div>
             </Card>
         );
