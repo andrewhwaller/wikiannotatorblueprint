@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, Elevation, Intent, Spinner } from "@blueprintjs/core";
+import { Alert, Button, Card, Elevation, Intent, Spinner } from "@blueprintjs/core";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllArticles } from "../actions/articles";
@@ -22,7 +22,17 @@ class ArticleList extends Component {
 
     render() {
         return (
-            <div id="content" className={"d-flex-column"}>
+            <div id="content" className={ "d-flex-column" }>
+                <Alert 
+                    isOpen={ this.props.alert } 
+                    onClose={ () => { this.props.clearAlert() } }
+                    canEscapeKeyCancel={ true }
+                    canOutsideClickCancel={ true }
+                    icon={ this.props.alert.type === "alert-danger" ? "warning-sign" : this.props.alert.type === "alert-success" ? "tick-circle" : "issue" }
+                    intent={this.props.alert.type === "alert-danger" ? Intent.DANGER : this.props.alert.type === "alert-success" ? Intent.SUCCESS : Intent.PRIMARY }
+                >
+                    <span>{ this.props.alert.message }</span>
+                </Alert>
                 { this.props.articleLoading ?
                     <div className={"d-flex-row h-100"}>
                         <div className={"mx-auto mb-auto"} style={{marginTop: "15rem"}}>
@@ -68,6 +78,7 @@ class ArticleList extends Component {
 
 const mapStateToProps = state => {
     return {
+        alert: state.alert,
         articles: state.articles,
         articleLoading: state.articleLoading,
     }
