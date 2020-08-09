@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 import { Button, Card, Elevation, Intent } from "@blueprintjs/core";
 import { connect } from "react-redux";
 import { getAllArticles } from "../actions/articles";
-import { setArticle, deleteArticle } from "../actions/article";
+import { getArticle, setArticle, deleteArticle } from "../actions/article";
 
 class Article extends Component {
-    handleEditClick(article) {
-        this.props.setArticle(article)
+    handleEditClick(id) {
+        this.props.getArticle(id)
     }
 
-    async handleDeleteClick(article) {
-        await this.props.deleteArticle(article)
+    async handleDeleteClick(id) {
+        await this.props.deleteArticle(id)
 
-        if (this.props.article.id === article.id) {
-            await this.props.setArticle({})
+        if (this.props.article.id === id) {
+            this.props.setArticle({})
         }
 
         this.props.getAllArticles();
@@ -39,10 +39,10 @@ class Article extends Component {
                     </div>
                 </div>
                 <div className="d-flex-row">
-                    <Link to={ "/articles/" + this.props.mappedArticle.id + "/edit" } onClick={ () => { this.handleEditClick(this.props.mappedArticle); } }>
+                    <Link to={ "/articles/" + this.props.mappedArticle.id + "/edit" } onClick={ () => { this.handleEditClick(this.props.mappedArticle.id); } }>
                         <Button intent={ Intent.PRIMARY } icon={ "edit" } >Edit</Button>
                     </Link>
-                    <Button className="ml-auto" intent={ Intent.DANGER } icon={ "trash" } onClick={ () => { this.handleDeleteClick(this.props.mappedArticle) } }>Delete</Button>
+                    <Button className="ml-auto" intent={ Intent.DANGER } icon={ "trash" } onClick={ () => { this.handleDeleteClick(this.props.mappedArticle.id) } }>Delete</Button>
                 </div>
             </Card>
         );
@@ -59,6 +59,7 @@ const mapDispatchToProps = dispatch => {
     return {
         getAllArticles: () => dispatch(getAllArticles()),
         setArticle: article => dispatch(setArticle(article)),
+        getArticle: article => dispatch(getArticle(article)),
         deleteArticle: article => dispatch(deleteArticle(article))
     }
 }

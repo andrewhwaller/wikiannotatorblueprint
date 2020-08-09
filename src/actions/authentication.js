@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { alertFailure } from "./alert";
 import { setArticle } from "./article";
-import { setAllArticles } from "./articles";
+import { getAllArticles, setAllArticles } from "./articles";
 import * as Constants from "../constants";
 
 export const submitLoginRequest = credentials => {
@@ -23,6 +23,7 @@ export const submitLoginRequest = credentials => {
                 if (status === 200 && Cookies.get("auth_token")) {
                     dispatch(setToken(json.auth_token));
                     dispatch(loginSuccess());
+                    dispatch(getAllArticles());
                 } else {
                     dispatch(loginFailure());
                 };

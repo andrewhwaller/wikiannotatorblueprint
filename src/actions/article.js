@@ -14,23 +14,18 @@ export const setArticle = article => {
     }
 }
 
-export const deleteArticle = (article) => {
-    return (dispatch) => {
-        let route;
-        let method;
+export const deleteArticle = id => {
+    return dispatch => {
         let headers = new Headers();
-
-        if (article.id) {
-            route = Constants.BASE_URL + "/articles/" + article.id
-            method = "DELETE"
-        }
+        let route = Constants.BASE_URL + "/articles/" + id;
+        let method = "DELETE";
 
         headers.set("Content-type", "application/json");
         headers.set("Authorization", Cookies.get("auth_token"));
         
         return fetch(route, {
             method: method,
-            body: JSON.stringify(article),
+            // body: JSON.stringify(article),
             headers: headers
         })
             .then(response => {
@@ -83,7 +78,7 @@ export const saveArticle = article => {
             })
             .then((json) => {
                 if (status === 200 || status === 201) {
-                    dispatch(saveArticleComplete(json.data));
+                    dispatch(saveArticleComplete(article));
                 }
             })
             .catch((error) => {
@@ -120,9 +115,9 @@ export const deleteFailure = () => {
 };
 
 export const saveArticleComplete = article => {
-    return dispatch => {
+    return async dispatch => {
+        await dispatch(getAllArticles())
         dispatch(setSavingFalse());
-        dispatch(getArticle(article));
     }
 }
 
@@ -137,13 +132,13 @@ export const getArticleFromSearch = article => {
     }
 };
 
-export const getArticle = article => {
+export const getArticle = id => {
     return dispatch => {
         let status;
         let route;
         let headers = new Headers();
 
-        route = Constants.BASE_URL + "/articles/" + article.id
+        route = Constants.BASE_URL + "/articles/" + id
 
         headers.set("Authorization", Cookies.get("auth_token"));
         

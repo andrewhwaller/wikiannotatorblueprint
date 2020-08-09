@@ -50,7 +50,7 @@ class ArticleEditor extends Component {
 	      <div className={"editor-container d-flex-column w-100 h-100"}>
 	        <ReactQuill theme="snow"  modules={this.modules}
 				formats={this.formats} onChange={this.rteChange}
-				value={this.props.article.extract || ""}
+				defaultValue={this.props.article.extract || ""}
 			/>
 	      </div>
 	    );

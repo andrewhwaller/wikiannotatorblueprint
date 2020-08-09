@@ -14,6 +14,7 @@ export const setAllArticles = articles => {
 
 export const getAllArticles = () => {
     return dispatch => {
+        dispatch(setAllArticles([]))
         let status;
         let route;
         let headers = new Headers();
