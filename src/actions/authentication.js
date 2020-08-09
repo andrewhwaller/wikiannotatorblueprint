@@ -1,6 +1,5 @@
 import Cookies from "js-cookie";
 import { alertFailure } from "./alert";
-import { setArticle } from "./article";
 import * as Constants from "../constants";
 
 export const submitLoginRequest = credentials => {
@@ -52,7 +51,6 @@ export const loginFailure = () => {
 export const logoutUser = () => {
     Cookies.remove("auth_token");
     return dispatch => {
-        dispatch(setArticle({}));
         dispatch(setToken([]));
         dispatch(revokeAuthentication());
     };
