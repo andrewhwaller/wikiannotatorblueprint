@@ -7,7 +7,6 @@ import { clearAlert } from "../actions/alert";
 import { setArticle, deleteArticle } from "../actions/article";
 
 class ArticleList extends Component {
-
     componentDidMount() {
         this.props.getAllArticles();
     }
@@ -20,6 +19,18 @@ class ArticleList extends Component {
         await this.props.deleteArticle(article);
         await this.props.setArticle([]);
         this.props.getAllArticles();
+    }
+
+    renderSpinnerMessage() {
+        let spinnerMessage;
+
+        if (this.props.articleLoading) {
+            spinnerMessage = "Articles loading...";
+        } else if (this.props.articleDeleting) {
+            spinnerMessage = "Deleting article...";
+        }
+
+        return spinnerMessage;
     }
 
     render() {
@@ -35,10 +46,13 @@ class ArticleList extends Component {
                 >
                     <span>{ this.props.alert.message }</span>
                 </Alert>
-                { this.props.articleLoading ?
+                { this.props.articleLoading || this.props.articleDeleting ?
                     <div className={"d-flex-row h-100"}>
                         <div className={"mx-auto mb-auto"} style={{marginTop: "15rem"}}>
-                            <Spinner className={""} intent={"primary"} size={150} />
+                            <Spinner className={ "" } intent={ "primary" } size={ 150 } />
+                            <h2 className="bp3-text-muted">
+                                { this.renderSpinnerMessage() }
+                            </h2>
                         </div>
                     </div> 
                 :
@@ -64,7 +78,8 @@ const mapStateToProps = state => {
     return {
         alert: state.alert,
         articles: state.articles,
-        articleLoading: state.articleLoading
+        articleLoading: state.articleLoading,
+        articleDeleting: state.articleDeleting
     }
 }
 

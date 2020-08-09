@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { setLoadingTrue, setLoadingFalse } from "./article";
 import * as Constants from "../constants";
 
 export const setAllArticles = articles => {
@@ -14,7 +15,7 @@ export const setAllArticles = articles => {
 
 export const getAllArticles = () => {
     return dispatch => {
-        dispatch(setAllArticles([]))
+        dispatch(setLoadingTrue());
         let status;
         let route;
         let headers = new Headers();
@@ -38,6 +39,9 @@ export const getAllArticles = () => {
                     })
                     dispatch(setAllArticles(articles))
                 }
+            })
+            .finally(() => {
+                dispatch(setLoadingFalse());
             })
             .catch((error) => {
                 console.error(error)

@@ -39,10 +39,7 @@ class ArticleEditor extends Component {
 	}
 
     rteChange = (content, delta, source, editor) => {
-        this.props.setDirtyTrue(true);
-        let unsavedDelta = this.props.article;
-        unsavedDelta.extract = content;
-        this.props.setDelta(unsavedDelta);
+        console.log(delta)
     }
 
 	render() {
@@ -50,7 +47,7 @@ class ArticleEditor extends Component {
 	      <div className={"editor-container d-flex-column w-100 h-100"}>
 	        <ReactQuill theme="snow"  modules={this.modules}
 				formats={this.formats} onChange={this.rteChange}
-				defaultValue={this.props.article.extract || ""}
+				value={this.props.article.extract || ""}
 			/>
 	      </div>
 	    );

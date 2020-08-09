@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { alertFailure } from "./alert";
-import { getAllArticles } from "./articles"
+import { getAllArticles } from "./articles";
 import * as Constants from "../constants";
 
 export const setArticle = article => {
@@ -16,6 +16,7 @@ export const setArticle = article => {
 
 export const deleteArticle = id => {
     return dispatch => {
+        dispatch({ type: "SET_DELETING_TRUE", deleting: true })
         let headers = new Headers();
         let route = Constants.BASE_URL + "/articles/" + id;
         let method = "DELETE";
@@ -35,6 +36,7 @@ export const deleteArticle = id => {
                     dispatch(deleteFailure());
                 }
             })
+            .finally(() => dispatch({ type: "SET_DELETING_FALSE", deleting: false }))
             .catch((error) => {
                 console.error(error);
         })
@@ -134,6 +136,7 @@ export const getArticleFromSearch = article => {
 
 export const getArticle = id => {
     return dispatch => {
+        dispatch({ type: "SET_LOADING_TRUE", loading: true })
         let status;
         let route;
         let headers = new Headers();
@@ -157,6 +160,7 @@ export const getArticle = id => {
                     dispatch(setArticle(json.data.attributes))
                 }
             })
+            .finally(() => dispatch({ type: "SET_LOADING_FALSE", loading: false }))
             .catch((error) => {
                 console.error(error)
         })
@@ -188,6 +192,20 @@ export const setLoadingTrue = () => {
     return {
         type: "SET_LOADING_TRUE",
         loading: true
+    }
+};
+
+export const setDeletingFalse = () => {
+    return {
+        type: "SET_DELETING_FALSE",
+        deleting: false
+    }
+}
+
+export const setDeletingTrue = () => {
+    return {
+        type: "SET_DELETING_TRUE",
+        deleting: true
     }
 };
 

@@ -6,6 +6,7 @@ import article from "./article";
 import articles from "./articles";
 import articleDirty from "./articleDirty";
 import articleLoading from "./articleLoading";
+import articleDeleting from "./articleDeleting";
 import articleSaving from "./articleSaving";
 import authenticated from "./authenticated";
 import authInput from "./authInput";
@@ -22,6 +23,7 @@ const createRootReducer = (history) => combineReducers({
     articleDirty,
     articleLoading,
     articleSaving,
+    articleDeleting,
     authenticated,
     authInput,
     darkMode,
