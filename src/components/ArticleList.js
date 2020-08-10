@@ -17,7 +17,9 @@ class ArticleList extends Component {
 
     async handleDeleteClick(article) {
         await this.props.deleteArticle(article);
-        await this.props.setArticle([]);
+        if (article.id === this.props.article.id) {
+            this.props.setArticle();
+        }
         this.props.getAllArticles();
     }
 
@@ -31,6 +33,12 @@ class ArticleList extends Component {
         }
 
         return spinnerMessage;
+    }
+
+    renderNoArticlesMessage() {
+        if (!this.props.articles.length) {
+            return <h2 className="bp3-text-muted mx-auto mt-5">Looks like you don't have any saved articles! Use "Search" to find something to annotate.</h2>
+        }
     }
 
     render() {
@@ -61,6 +69,7 @@ class ArticleList extends Component {
                             <h1 className={"ml-1 mt-1 mb-auto"}>Saved articles</h1>
                         </div>
                         <div className={ "d-flex-column flex-grow-1 px-5 mt-1 pb-1" } style={ { overflow: "auto" } }>
+                            { this.renderNoArticlesMessage() }
                             <div className="article-grid">
                                 { this.props.articles.map(article => (
                                     <Article mappedArticle={ article } key={ article.id }></Article>

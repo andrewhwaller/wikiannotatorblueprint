@@ -39,7 +39,10 @@ class ArticleEditor extends Component {
 	}
 
     rteChange = (content, delta, source, editor) => {
-        console.log(delta)
+        // this.props.setDirtyTrue(true);
+        let unsavedDelta = this.props.article;
+        unsavedDelta.extract = content;
+        this.props.setDelta(this.props.article);
     }
 
 	render() {

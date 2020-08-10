@@ -83,7 +83,7 @@ class Header extends Component {
                     </NavLink>
                     { searchTab }
                     { articlesTab }
-                    { this.props.article.length !== 0 && this.props.authenticated &&
+                    { this.props.article.pageid && this.props.authenticated &&
                         <NavLink
                         to={ url }
                             className="bp3-button bp3-minimal bp3-icon-edit header-button"
