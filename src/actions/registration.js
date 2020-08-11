@@ -8,7 +8,7 @@ export const submitRegistrationRequest = credentials => {
         return fetch(Constants.BASE_URL + "/users", {
             method: "POST",
             mode: "no-cors",
-            body: JSON.stringify({ email: credentials.email, password: credentials.password, password_confirmation: credentials.password_confirmation }),
+            body: JSON.stringify({user: { email: credentials.email, password: credentials.password, password_confirmation: credentials.password_confirmation }}),
             headers: {
                 "Content-Type": "application/json"
             }
