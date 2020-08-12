@@ -65,7 +65,7 @@ class Home extends Component {
                     <span>{ this.props.alert.message }</span>
                 </Alert>
                 <div className="d-flex-row my-auto">
-                    <div className="d-flex-column ml-5" style={{ width: "50%" }}>
+                    <div className="d-flex-column" style={{ width: "50%", alignItems: "center", justifyContent: "center" }}>
                         <span className="hero-brand mx-auto">
                             <span className="brandText">Wiki</span>
                             <span>Annotator</span>
@@ -75,7 +75,7 @@ class Home extends Component {
                             { this.renderHomeView() }
                         </div>
                     </div>
-                    <div className="d-flex-column ml-5 mr-auto">
+                    <div className="d-flex-column" style={{ width: "50%", alignItems: "center", justifyContent: "center" }}>
                         <img className="" style={ { maxHeight: "30rem" } } src={ blog } alt="Logo" />
                         <div className="mx-auto mt-1">Icon made by <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
                     </div>
