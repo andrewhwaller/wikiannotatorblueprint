@@ -69,7 +69,7 @@ class RegistrationInput extends Component {
                     <InputGroup leftIcon="user" large="true" name="email" className="mb-1" autoComplete="off" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
                     <InputGroup leftIcon="key" large="true" name="password" className="mb-1" autoComplete="off" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
                     <InputGroup leftIcon="confirm" large="true" name="password_confirmation" className="mb-1" autoComplete="off" placeholder="Confirm password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
-                    <Button type="submit" intent={ Intent.SUCCESS } className="mb-1 w-100" rightIcon={ "tick" } large={ "large" }>Create Account</Button>     
+                    <Button type="submit" intent={ Intent.SUCCESS } className="w-100" rightIcon={ "tick" } large={ "large" }>Create Account</Button>     
                 </form>
             </Fragment>
         )
