@@ -1,5 +1,6 @@
 import * as Constants from "../constants"
 import { setAuthInput } from "./authInput";
+import { alertFailure, alertSuccess } from "./alert";
 
 export const submitRegistrationRequest = credentials => {
     return dispatch => {
@@ -26,18 +27,20 @@ export const submitRegistrationRequest = credentials => {
 }
 
 export const registrationSuccess = () => {
-    return dispatch => {
-        dispatch(setAuthInput("login"))
-        return {
-            type: "ALERT_SUCCESS",
-            message: "You are now registered!"
-        }
+    let success = {
+        message: "You are now registered! Please log in using your new credentials."
+    }
+    return async dispatch => {
+        await dispatch(setAuthInput("login"))
+        dispatch(alertSuccess(success));
     }
 }
 
 export const registrationFailure = () => {
-    return {
-        type: "ALERT_FAILURE",
-        message: "Registration failed! Please check your credentials and try again."
+    let failure = {
+        message: "Registration failed. Please check your credentials and try again."
+    }
+    return dispatch => {
+        dispatch(alertFailure(failure));
     }
 }

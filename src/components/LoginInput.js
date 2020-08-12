@@ -31,6 +31,15 @@ class LoginInput extends Component {
         this.props.submitLoginRequest(credentials);
     };
 
+    handleDemoLogin = () => {
+        let credentials = {
+            email: "test@test.com",
+            password: "password"
+        }
+
+        this.props.submitLoginRequest(credentials);
+    }
+
     render() {
 
         const lockButton = (
@@ -51,7 +60,8 @@ class LoginInput extends Component {
                 <form>
                     <InputGroup leftIcon="user" large="true" name="email" className="mb-1" autoComplete="off" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
                     <InputGroup leftIcon="key" large="true" name="password" autoComplete="off" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
-                    <Button intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" } onClick={ this.handleSubmit }>Log In</Button>     
+                    <Button intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" } onClick={ this.handleSubmit }>Log In</Button>
+                    <Button minimal="true" intent={ Intent.SECONDARY } className="mt-1 mb-1 w-100" rightIcon={ "lab-test" } large={ "large" } onClick={ this.handleDemoLogin }>Demo Mode</Button>     
                 </form>
             </Fragment>
         )
