@@ -2,12 +2,10 @@ import * as Constants from "../constants"
 import { setAuthInput } from "./authInput";
 
 export const submitRegistrationRequest = credentials => {
-    console.log(credentials)
     return dispatch => {
         let status;
         return fetch(Constants.BASE_URL + "/users", {
             method: "POST",
-            mode: "no-cors",
             body: JSON.stringify({user: { email: credentials.email, password: credentials.password, password_confirmation: credentials.password_confirmation }}),
             headers: {
                 "Content-Type": "application/json"
