@@ -38,7 +38,7 @@ class Article extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="d-flex-row">
+                <div className="d-flex-row mt-auto">
                     <Link to={ "/articles/" + this.props.mappedArticle.id + "/edit" } onClick={ () => { this.handleEditClick(this.props.mappedArticle.id); } }>
                         <Button intent={ Intent.PRIMARY } icon={ "edit" } >Edit</Button>
                     </Link>
