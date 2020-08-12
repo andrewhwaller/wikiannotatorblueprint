@@ -19,11 +19,12 @@ class RegistrationInput extends Component {
 
     handleLockClick = () => this.setState({ showPassword: !this.state.showPassword });
 
-    handleInputChange = (event) => {
+    handleInputChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    handleSubmit = () => {
+    handleSubmit = event => {
+        event.preventDefault();
         if (this.state.password === this.state.password_confirmation && /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
             let credentials = {
                 email: this.state.email,
@@ -64,11 +65,11 @@ class RegistrationInput extends Component {
         return (
             <Fragment>
                 <Button intent={ Intent.SECONDARY } className="mt-1 mb-1 w-100" icon={ "arrow-left" } large={ "large" } minimal={ "minimal" } onClick={ () => this.props.setAuthInput("login") }>Back to Log In</Button>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <InputGroup leftIcon="user" large="true" name="email" className="mb-1" autoComplete="off" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
                     <InputGroup leftIcon="key" large="true" name="password" className="mb-1" autoComplete="off" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
-                    <InputGroup leftIcon="confirm" large="true" name="password_confirmation" autoComplete="off" placeholder="Confirm password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
-                    <Button intent={ Intent.SUCCESS } className="mt-1 mb-1 w-100" rightIcon={ "tick" } large={ "large" } onClick={this.handleSubmit}>Create Account</Button>     
+                    <InputGroup leftIcon="confirm" large="true" name="password_confirmation" className="mb-1" autoComplete="off" placeholder="Confirm password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
+                    <Button type="submit" intent={ Intent.SUCCESS } className="mb-1 w-100" rightIcon={ "tick" } large={ "large" }>Create Account</Button>     
                 </form>
             </Fragment>
         )

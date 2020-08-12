@@ -18,11 +18,12 @@ class LoginInput extends Component {
 
     handleLockClick = () => this.setState({ showPassword: !this.state.showPassword });
 
-    handleInputChange = (event) => {
+    handleInputChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     }
     
-    handleSubmit = () => {
+    handleSubmit = event => {
+        event.preventDefault();
         let credentials = {
             email: this.state.email,
             password: this.state.password
@@ -57,12 +58,12 @@ class LoginInput extends Component {
         return (
             <Fragment>
                 <Button onClick={ () => this.props.setAuthInput("registration") } intent={ Intent.SUCCESS } className="w-100" style={{ marginTop: "1rem", marginBottom: "1rem"}} large={ "large" } minimal={ "minimal" }>Create account?</Button>
-                <form>
+                <form onSubmit={ this.handleSubmit }>
                     <InputGroup leftIcon="user" large="true" name="email" className="mb-1" autoComplete="off" placeholder="Enter your email address..." type="email" onChange={ this.handleInputChange } />
                     <InputGroup leftIcon="key" large="true" name="password" autoComplete="off" placeholder="Enter your password..." type={ this.state.showPassword ? "text" : "password" } rightElement={ lockButton } onChange={ this.handleInputChange } />
-                    <Button intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" } onClick={ this.handleSubmit }>Log In</Button>
-                    <Button minimal="true" intent={ Intent.SECONDARY } className="mt-1 mb-1 w-100" rightIcon={ "lab-test" } large={ "large" } onClick={ this.handleDemoLogin }>Demo Mode</Button>     
+                    <Button type="submit" intent={ Intent.PRIMARY } className="mt-1 mb-1 w-100" rightIcon={ "log-in" } large={ "large" }>Log In</Button>
                 </form>
+                <Button minimal="true" intent={ Intent.SECONDARY } className="w-100" rightIcon={ "lab-test" } large={ "large" } onClick={ this.handleDemoLogin }>Demo Mode</Button>
             </Fragment>
         )
     }
