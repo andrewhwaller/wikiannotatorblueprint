@@ -23,7 +23,7 @@ class Article extends Component {
     render() {
         return (
             <Card interactive={ false } elevation={ Elevation.TWO } className={ "m-0-5" } >
-                <div class="d-flex-column h-100">
+                <div className="d-flex-column h-100">
                     <h3 className="mb-1" style={ { marginTop: "0" } }>{ this.props.mappedArticle.title }</h3>
                     <div className="d-flex-column mt-auto mb-1">
                         <span>
