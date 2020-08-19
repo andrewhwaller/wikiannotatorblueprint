@@ -31,14 +31,6 @@ class App extends Component {
         }
     }
 
-    renderEdit(props) {
-        console.log(props)
-    }
-
-    renderShirts = (routerProps) => {
-        console.log(routerProps)
-    }
-
     render() {
         document.body.className = this.props.darkMode ? "bp3-dark" : "";
 

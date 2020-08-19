@@ -4,8 +4,6 @@ import * as serviceWorker from "./serviceWorker";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-// import { routerMiddleware, ConnectedRouter } from "connected-react-router";
-// import { connectedRouterRedirect } from "redux-auth-wrapper/history4/redirect"
 import { createBrowserHistory } from "history";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -30,7 +28,6 @@ const store = createStore(
     composeEnhancer(
         applyMiddleware(
             thunk
-            // routerMiddleware(history)
         )
     )
 )
