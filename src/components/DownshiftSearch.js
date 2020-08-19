@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { getArticleFromSearch } from "../actions/article"
 import Downshift from "downshift";
-import axios from 'axios';
-import '../index.scss';
+import axios from "axios";
+import "../index.scss";
 
 class DownshiftSearch extends Component {
     constructor() {

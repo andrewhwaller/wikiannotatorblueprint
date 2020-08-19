@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import DownshiftSearch from './DownshiftSearch'
+import React, { Component } from "react";
+import DownshiftSearch from "./DownshiftSearch"
 
 class Search extends Component {
     render() {
