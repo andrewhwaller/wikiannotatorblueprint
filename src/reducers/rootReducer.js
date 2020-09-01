@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { connectRouter } from "connected-react-router";
 
 import alert from "./alert";
 import article from "./article";
@@ -15,8 +14,7 @@ import token from "./token";
 import unsavedDelta from "./unsavedDelta";
 import user from "./user";
 
-const createRootReducer = (history) => combineReducers({
-    router: connectRouter(history),
+const createRootReducer = () => combineReducers({
     alert,
     article,
     articles,
